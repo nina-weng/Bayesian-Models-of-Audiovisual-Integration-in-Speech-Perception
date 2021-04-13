@@ -22,7 +22,7 @@ print('MODEL CHOSE: {}\t{}'.format(model,implementation))
 # define the free parameters
 init_para = get_random_free_params(model=model,implementation=implementation)
 
-N_trails = 1
+N_trails = 10
 num_tester = 16
 if model == 'JPM' and implementation == 'full':
     num_params = 14
@@ -49,7 +49,7 @@ neg_log_record_n = np.sum(neg_log_record,axis=1)
 print(len(neg_log_record_n))
 
 min_index = np.argmin(neg_log_record_n)
-best_params = neg_log_record[min_index,:,:]
+best_params = params_stored[min_index,:,:]
 
 # store it first
 fitted_param_path = '../S2_data/fitted_params_tmp.npy'
