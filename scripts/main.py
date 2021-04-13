@@ -22,7 +22,7 @@ print('MODEL CHOSE: {}\t{}'.format(model,implementation))
 # define the free parameters
 init_para = get_random_free_params(model=model,implementation=implementation)
 
-N_trails = 2
+N_trails = 50
 num_tester = 16
 if model == 'JPM' and implementation == 'full':
     num_params = 14
@@ -52,7 +52,7 @@ for i in tqdm(range(N_trails)):
 
 
 min_index = np.argmin(neg_log_record,axis=0)
-print('min neg_log :{}\ncorresponding index: {}'.format(np.min(neg_log_record,axis=0)),min_index)
+print('min neg_log :{}\ncorresponding index: {}'.format(np.min(neg_log_record,axis=0),min_index))
 
 best_params = []
 for i in range(num_tester):
