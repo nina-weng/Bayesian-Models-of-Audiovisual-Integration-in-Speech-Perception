@@ -6,3 +6,7 @@ supervised by Tobias Andersen & Agata Wlaszczyk
 
 
 based on Alma's work: https://journals.plos.org/plosone/article/authors?id=10.1371/journal.pone.0246986
+
+
+
+worklog: https://docs.google.com/spreadsheets/d/12fZfqtgxMTg6rTjENT-Q2yRCTC252KaY4XWu0jumSAk/edit#gid=0

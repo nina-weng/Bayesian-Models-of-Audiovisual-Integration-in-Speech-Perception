@@ -134,6 +134,10 @@ def neg_log_guassian(x0, tester_index, data, model, implementation):
         raise Exception('function not implemented')
 
 
+    # pre-processing the parameters
+
+
+
     # data['AB']
     res_ab = log_max_likelihood_each(data['AB']['counts'][tester_index, :, :],
                                      np.array([mu_ab] * 3),

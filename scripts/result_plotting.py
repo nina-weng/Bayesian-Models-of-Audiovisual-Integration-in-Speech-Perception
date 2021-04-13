@@ -10,9 +10,10 @@ with open(pkl_path, 'rb') as f:
     data = pickle.load(f)
 
 # get the params
-fitted_param_path = '../S2_data/fitted_params_tmp.npy'
+fitted_param_path = '../S2_data/fitted_params_2.npy'
 params_stored= np.load(fitted_param_path)
 print(params_stored.shape)
+print(params_stored)
 
 num_tester = 16
 props_with_fitted_data = {}
@@ -85,6 +86,12 @@ for j,k in enumerate(ks):
         ax[i,j].set_ylim(0,1)
         ax[i,j].set_title(k+'-'+snrs_index[i])
 
+plt.show()
+
+
+########################################
+# PLOT the audiovisual stimuli         #
+########################################
 
 def plot_avsituation(k):
     fig, ax = plt.subplots(3, 3, figsize=(12, 12))
@@ -97,9 +104,9 @@ def plot_avsituation(k):
     err_fitted = np.nanstd(props_with_fitted_data[k], axis=0) / np.sqrt(num_tester)
 
     props_raw_a = np.nanmean(data[k]['asynch']['props'], axis=0)
-    props_fitted_a = np.nanmean(props_with_fitted_data[k+'-a'], axis=0)
+    props_fitted_a = np.nanmean(props_with_fitted_data[k+'-A'], axis=0)
     err_raw_a = np.nanstd(data[k]['asynch']['props'], axis=0) / np.sqrt(num_tester)
-    err_fitted_a = np.nanstd(props_with_fitted_data[k+'-a'], axis=0) / np.sqrt(num_tester)
+    err_fitted_a = np.nanstd(props_with_fitted_data[k+'-A'], axis=0) / np.sqrt(num_tester)
 
     x = np.arange(len(labels))  # the label locations
     width = 0.35  # the width of the bars
@@ -110,15 +117,15 @@ def plot_avsituation(k):
             if i > 0 and j > 0:
                 continue
 
-            rects1 = ax[i, j].bar(x - width / 2, props_raw[cnt], color='steelblue', alpha=0.9, yerr=err_raw[cnt],
-                                  width=width, label='observation', capsize=5, ecolor='red')
-            rects2 = ax[i, j].bar(x + width / 2, props_fitted[cnt], color='skyblue', alpha=0.9, yerr=err_fitted[cnt],
-                                  width=width, label='prediction', capsize=5, ecolor='red')
+            rects1 = ax[i, j].bar(x - 3*width / 4, props_raw[cnt], color='steelblue', alpha=0.9, yerr=err_raw[cnt],
+                                  width=width/2, label='observation', capsize=5, ecolor='red')
+            rects2 = ax[i, j].bar(x - width / 4, props_fitted[cnt], color='skyblue', alpha=0.9, yerr=err_fitted[cnt],
+                                  width=width/2, label='prediction', capsize=5, ecolor='red')
 
-            rects3 = ax[i, j].bar(x - width / 2, props_raw_a[cnt], color='darkorange', alpha=0.9, yerr=err_raw_a[cnt],
-                                  width=width, label='observation', capsize=5, ecolor='red')
-            rects4 = ax[i, j].bar(x + width / 2, props_fitted_a[cnt], color='orange', alpha=0.9, yerr=err_fitted_a[cnt],
-                                  width=width, label='prediction', capsize=5, ecolor='red')
+            rects3 = ax[i, j].bar(x + width / 4, props_raw_a[cnt], color='darkorange', alpha=0.9, yerr=err_raw_a[cnt],
+                                  width=width/2, label='observation', capsize=5, ecolor='red')
+            rects4 = ax[i, j].bar(x + 3*width / 4, props_fitted_a[cnt], color='orange', alpha=0.9, yerr=err_fitted_a[cnt],
+                                  width=width/2, label='prediction', capsize=5, ecolor='red')
 
 
             ax[i, j].set_xticks(x)
@@ -134,7 +141,9 @@ def plot_avsituation(k):
             ax[i, j].set_title(k + '  ' + 'V-' + snrs_index[j] + ',A-' + snrs_index[i])
             cnt += 1
 
+    plt.show()
+
 
 plot_avsituation('AVB')
 plot_avsituation('AVG')
-plot_avsituation('AVF')
+plot_avsituation('AVFus')

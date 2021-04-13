@@ -22,7 +22,7 @@ print('MODEL CHOSE: {}\t{}'.format(model,implementation))
 # define the free parameters
 init_para = get_random_free_params(model=model,implementation=implementation)
 
-N_trails = 10
+N_trails = 2
 num_tester = 16
 if model == 'JPM' and implementation == 'full':
     num_params = 14
@@ -38,22 +38,34 @@ neg_log_record = np.zeros((N_trails,num_tester))
 for i in tqdm(range(N_trails)):
     for j in tqdm(range(num_tester)):
         x0 = get_random_free_params(model=model,implementation=implementation)
-        res = minimize(neg_log_guassian, x0, args=(j, data, model, implementation), method='Nelder-Mead', tol=1e-6)
+        res = minimize(neg_log_guassian, x0, args=(j, data, model, implementation), method='Nelder-Mead', tol=1e-4)
         params_stored[i,j,:] = res.x
 
         # record the neg-log value (for choosing the lowest one)
-        neg_log_record[i, j] = neg_log_guassian(res.x, j, data, model, implementation)
+        neg_log = neg_log_guassian(res.x, j, data, model, implementation)
+        neg_log_record[i, j] = neg_log
+        print('neg_log for {}th trail & {} tester: {}'.format(i,j,neg_log))
 
 
-neg_log_record_n = np.sum(neg_log_record,axis=1)
-print(len(neg_log_record_n))
+# neg_log_record_n = np.sum(neg_log_record,axis=1)
+# print(len(neg_log_record_n))
 
-min_index = np.argmin(neg_log_record_n)
-best_params = params_stored[min_index,:,:]
+
+min_index = np.argmin(neg_log_record,axis=0)
+print('min neg_log :{}\ncorresponding index: {}'.format(np.min(neg_log_record,axis=0)),min_index)
+
+best_params = []
+for i in range(num_tester):
+    best_params.append(params_stored[i,min_index[i],:])
+
+best_params = np.array(best_params)
+print('best_params:{}'.format(best_params))
 
 # store it first
-fitted_param_path = '../S2_data/fitted_params_tmp.npy'
+fitted_param_path = '../S2_data/fitted_params_3.npy'
 np.save(fitted_param_path, best_params)
+
+
 # neg_log = []  # use to record the neg-log-multi-nomial likelihood
 # def minimize_with_params()
 # tester_index = 11
