@@ -200,8 +200,10 @@ def neg_log_guassian(x0, tester_index, data, model, implementation):
                                         mus, sigmas, c)
 
 
-    res = res_ab + res_ag + res_vb + res_vg + res_avfus_s + res_avg_s + res_avb_s +\
-          res_avfus_a + res_avg_a + res_avb_a
+    res = res_ab + res_ag + res_vb + res_vg + 2*res_avfus_s + 2*res_avg_s + 2*res_avb_s +\
+          2*res_avfus_a + 2*res_avg_a + 2*res_avb_a
+
+    # print(res_ab,res_ag,res_vb,res_vg,res_avfus_s,res_avg_s,res_avb_s,res_avfus_a,res_avg_a,res_avb_a)
     # neg_log.append(-res)
     return -(res)
 

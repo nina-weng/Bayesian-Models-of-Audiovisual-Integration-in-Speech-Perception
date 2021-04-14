@@ -9,6 +9,7 @@ from tqdm import tqdm
 from utils import get_random_free_params
 from fitting_functions import *
 
+
 # Read in data                 #
 pkl_path = '../S2_data/data.pkl'
 with open(pkl_path, 'rb') as f:
@@ -22,7 +23,7 @@ print('MODEL CHOSE: {}\t{}'.format(model,implementation))
 # define the free parameters
 init_para = get_random_free_params(model=model,implementation=implementation)
 
-N_trails = 50
+N_trails = 10
 num_tester = 16
 if model == 'JPM' and implementation == 'full':
     num_params = 14
@@ -50,21 +51,25 @@ for i in tqdm(range(N_trails)):
 # neg_log_record_n = np.sum(neg_log_record,axis=1)
 # print(len(neg_log_record_n))
 
+neg_log_record = np.array(neg_log_record)
 
-min_index = np.argmin(neg_log_record,axis=0)
-print('min neg_log :{}\ncorresponding index: {}'.format(np.min(neg_log_record,axis=0),min_index))
+min_index = np.nanargmin(neg_log_record,axis=0)
+print('min neg_log :{}\ncorresponding index: {}'.format(np.nanmin(neg_log_record,axis=0),min_index))
 
 best_params = []
 for i in range(num_tester):
-    best_params.append(params_stored[i,min_index[i],:])
+    best_params.append(params_stored[min_index[i],i,:])
 
 best_params = np.array(best_params)
 print('best_params:{}'.format(best_params))
 
-# store it first
-fitted_param_path = '../S2_data/fitted_params_3.npy'
+# store the best
+fitted_param_path = '../S2_data/fitted_params_5.npy'
 np.save(fitted_param_path, best_params)
 
+# store the whole params
+fitted_param_path = '../S2_data/fitted_params_5_all.npy'
+np.save(fitted_param_path, params_stored)
 
 # neg_log = []  # use to record the neg-log-multi-nomial likelihood
 # def minimize_with_params()

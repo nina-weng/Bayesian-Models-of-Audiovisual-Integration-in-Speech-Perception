@@ -10,10 +10,15 @@ with open(pkl_path, 'rb') as f:
     data = pickle.load(f)
 
 # get the params
-fitted_param_path = '../S2_data/fitted_params_2.npy'
+fitted_param_path = '../S2_data/fitted_params_5.npy'
 params_stored= np.load(fitted_param_path)
 print(params_stored.shape)
-print(params_stored)
+# print(params_stored)
+
+# verify
+for i in range(16):
+    neg_log = neg_log_guassian(params_stored[i,:], i, data, model='JPM', implementation='full')
+    print('{}:{}'.format(i,neg_log))
 
 num_tester = 16
 props_with_fitted_data = {}
@@ -37,16 +42,16 @@ for key in keys:
             elif key[0] == 'V':
                 sigmas = np.array(params_stored[i, 6:9])
         else:
-            if len(key) > 3 and key!= 'AVFus':
-                sigma_0 = sigma_0_a
-            else: sigma_0 = sigma_0_s
+            if key in ['AVG','AVB','AVFus']:
+                sigma_0 = sigma_0_s
+            else: sigma_0 = sigma_0_a
 
             # for AVB AVG AVFus
             if key[2] == 'B':
                 mus ,sigmas = get_params_AV(mu_ab ,mu_vb ,sigma_vh ,sigma_vm ,sigma_vl ,sigma_ah ,sigma_am ,sigma_al,sigma_0= sigma_0)
             elif key[2] == 'G':
                 mus ,sigmas = get_params_AV(mu_ag ,mu_vg ,sigma_vh ,sigma_vm ,sigma_vl ,sigma_ah ,sigma_am ,sigma_al,sigma_0= sigma_0)
-            elif key[2] == 'V':
+            elif key[2] == 'F':
                 mus ,sigmas = get_params_AV(mu_ab ,mu_vg ,sigma_vh ,sigma_vm ,sigma_vl ,sigma_ah ,sigma_am ,sigma_al,sigma_0= sigma_0)
 
         c = params_stored[i ,-2:]
@@ -117,15 +122,15 @@ def plot_avsituation(k):
             if i > 0 and j > 0:
                 continue
 
-            rects1 = ax[i, j].bar(x - 3*width / 4, props_raw[cnt], color='steelblue', alpha=0.9, yerr=err_raw[cnt],
-                                  width=width/2, label='observation', capsize=5, ecolor='red')
-            rects2 = ax[i, j].bar(x - width / 4, props_fitted[cnt], color='skyblue', alpha=0.9, yerr=err_fitted[cnt],
-                                  width=width/2, label='prediction', capsize=5, ecolor='red')
+            rects1 = ax[i, j].bar(x - 5*width / 8, props_raw[cnt], color='steelblue', alpha=0.9, yerr=err_raw[cnt],
+                                  width=width/4, label='observation', capsize=5, ecolor='red')
+            rects2 = ax[i, j].bar(x - 3*width / 8, props_fitted[cnt], color='skyblue', alpha=0.9, yerr=err_fitted[cnt],
+                                  width=width/4, label='prediction', capsize=5, ecolor='red')
 
-            rects3 = ax[i, j].bar(x + width / 4, props_raw_a[cnt], color='darkorange', alpha=0.9, yerr=err_raw_a[cnt],
-                                  width=width/2, label='observation', capsize=5, ecolor='red')
-            rects4 = ax[i, j].bar(x + 3*width / 4, props_fitted_a[cnt], color='orange', alpha=0.9, yerr=err_fitted_a[cnt],
-                                  width=width/2, label='prediction', capsize=5, ecolor='red')
+            rects3 = ax[i, j].bar(x + 3*width / 8, props_raw_a[cnt], color='darkorange', alpha=0.9, yerr=err_raw_a[cnt],
+                                  width=width/4, label='observation', capsize=5, ecolor='red')
+            rects4 = ax[i, j].bar(x + 5*width / 8, props_fitted_a[cnt], color='orange', alpha=0.4, yerr=err_fitted_a[cnt],
+                                  width=width/4, label='prediction', capsize=5, ecolor='red')
 
 
             ax[i, j].set_xticks(x)
