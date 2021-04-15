@@ -10,7 +10,7 @@ with open(pkl_path, 'rb') as f:
     data = pickle.load(f)
 
 # get the params
-fitted_param_path = '../S2_data/fitted_params_5.npy'
+fitted_param_path = '../S2_data/fitted_params_6.npy'
 params_stored= np.load(fitted_param_path)
 print(params_stored.shape)
 # print(params_stored)

@@ -23,7 +23,7 @@ print('MODEL CHOSE: {}\t{}'.format(model,implementation))
 # define the free parameters
 init_para = get_random_free_params(model=model,implementation=implementation)
 
-N_trails = 10
+N_trails = 50
 num_tester = 16
 if model == 'JPM' and implementation == 'full':
     num_params = 14
@@ -64,11 +64,11 @@ best_params = np.array(best_params)
 print('best_params:{}'.format(best_params))
 
 # store the best
-fitted_param_path = '../S2_data/fitted_params_5.npy'
+fitted_param_path = '../S2_data/fitted_params_6.npy'
 np.save(fitted_param_path, best_params)
 
 # store the whole params
-fitted_param_path = '../S2_data/fitted_params_5_all.npy'
+fitted_param_path = '../S2_data/fitted_params_6_all.npy'
 np.save(fitted_param_path, params_stored)
 
 # neg_log = []  # use to record the neg-log-multi-nomial likelihood
