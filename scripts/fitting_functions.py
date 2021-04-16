@@ -1,6 +1,24 @@
 import numpy as np
 import scipy.stats
 from scipy.special import factorial
+import math
+from scipy.special import softmax
+
+# math functions
+def sigmoid(x):
+  return 1 / (1 + math.exp(-x))
+
+# functions for pre=processing:
+def transfer_sigmoid(value,range=3):
+    '''
+
+    :param value: the value needed transferring
+    :param range: from the original scope (0,1) to (-range,range)
+    :return:
+    '''
+    return (2*range)*sigmoid(value) - range
+
+
 
 def get_av(mu_a,mu_v,sigma_a,sigma_v,sigma_0=0):
     '''
@@ -110,7 +128,7 @@ def get_params_AV(mu_1, mu_2, sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am,
 
 
 
-def neg_log_guassian(x0, tester_index, data, model, implementation):
+def neg_log_guassian(x0, tester_index, data, model, implementation, preprocess = False):
 
     # get the parameter out from x0
     if model == 'JPM' and implementation == 'full':
@@ -135,6 +153,17 @@ def neg_log_guassian(x0, tester_index, data, model, implementation):
 
 
     # pre-processing the parameters
+    if (preprocess):
+        # for all mus -> use sigmoid to convert into range (-3,3)
+        [mu_vg, mu_vb, mu_ag, mu_ab] = [transfer_sigmoid(mu,range=3) for mu in np.array([mu_vg, mu_vb, mu_ag, mu_ab])]
+        # for sigma -> use exponential function to convert sigma to (1, +inf)
+        sigs = [sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al]
+                        # method 0: [np.sqrt(np.exp(sig ** 2)) for sig in sigs]
+        [sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al] = [np.exp(np.abs(sig)) for sig in sigs]
+        # intervals/boundaries
+        softmaxBounds = softmax(c)
+        c = 6*(np.cumsum(softmaxBounds)-0.5)
+
 
 
 
@@ -207,4 +236,19 @@ def neg_log_guassian(x0, tester_index, data, model, implementation):
     # neg_log.append(-res)
     return -(res)
 
+# mu_vg, mu_vb, mu_ag, mu_ab = -5,-1,2.5,6
+# [mu_vg, mu_vb, mu_ag, mu_ab] = [transfer_sigmoid(mu) for mu in np.array([mu_vg, mu_vb, mu_ag, mu_ab])]#transfer_sigmoid(np.array([mu_vg, mu_vb, mu_ag, mu_ab]))
+# print(mu_vg, mu_vb, mu_ag, mu_ab)
+
+# sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al = 0.01, 0.2,0.75,4,2,0.04
+# sigs = [sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al]
+# [sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al] = [np.exp(np.abs(sig))  for sig in sigs]
+# print(sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al )
+
+# c = [-1.1, 0.4]
+# softmaxBounds = softmax(c)
+# print(softmaxBounds)
+# print(np.cumsum(softmaxBounds))
+# c = 6*(np.cumsum(softmaxBounds)-0.5)
+# print(c)
 

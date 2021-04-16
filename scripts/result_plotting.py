@@ -11,6 +11,7 @@ with open(pkl_path, 'rb') as f:
 
 # get the params
 fitted_param_path = '../S2_data/fitted_params_6.npy'
+# fitted_param_path = '../fitted_params/fitted_params_7.npy'
 params_stored= np.load(fitted_param_path)
 print(params_stored.shape)
 # print(params_stored)
