@@ -16,36 +16,52 @@ with open(pkl_path, 'rb') as f:
     data = pickle.load(f)
 
 # set the model
-model= 'JPM'
+model= 'BCI' #'JPM'
 implementation='full'
-print('MODEL CHOSE: {}\t{}'.format(model,implementation))
+preprocess = True
+print('MODEL CHOSE: {}\t{}\tpreprocess:{}'.format(model,implementation,preprocess))
+
 
 # define the free parameters
 init_para = get_random_free_params(model=model,implementation=implementation)
 
-N_trails = 10
+N_trails = 50
 num_tester = 16
 if model == 'JPM' and implementation == 'full':
     num_params = 14
 elif model == 'JPM' and implementation == 'reduced':
     num_params = 13
+elif model == 'JPM' and implementation == 'mle':
+    num_params = 12
+elif model == 'BCI' and implementation == 'full':
+    num_params = 14
 else:
     raise Exception('model not implemented')
 
 
-params_stored = np.zeros((N_trails,num_tester,num_params))
+params_stored = np.zeros((N_trails,num_tester,14))
 neg_log_record = np.zeros((N_trails,num_tester))
 
-for i in tqdm(range(N_trails)):
-    for j in tqdm(range(num_tester)):
+nan_check = [False] * num_tester
+
+
+for j in tqdm(range(num_tester)):
+    for i in tqdm(range(N_trails)):
         x0 = get_random_free_params(model=model,implementation=implementation)
-        res = minimize(neg_log_guassian, x0, args=(j, data, model, implementation), method='Nelder-Mead', tol=1e-4)
-        params_stored[i,j,:] = res.x
+        res = minimize(neg_log_bci, x0, args=(j, data, model, implementation,preprocess), method='Nelder-Mead', tol=1e-4)  # BFGS,Newton-CG
+        params_stored[i,j,:] = parameter_prepocess(res.x,model=model,implementation=implementation,preprocess=preprocess)
 
         # record the neg-log value (for choosing the lowest one)
-        neg_log = neg_log_guassian(res.x, j, data, model, implementation)
+        neg_log = neg_log_bci(res.x, j, data, model, implementation,preprocess)
+        # neg_log_2 = res.fun
         neg_log_record[i, j] = neg_log
+
+        # if nan_check[j] == False and np.isnan(neg_log) == False:
+        #     nan_check[j] = True
+        #     i = 0
+
         print('neg_log for {}th trail & {} tester: {}'.format(i,j,neg_log))
+        print(params_stored[i,j,:])
 
 
 # neg_log_record_n = np.sum(neg_log_record,axis=1)
@@ -64,11 +80,11 @@ best_params = np.array(best_params)
 print('best_params:{}'.format(best_params))
 
 # store the best
-fitted_param_path = '../fitted_params/fitted_params_7.npy'
+fitted_param_path = '../fitted_params/fitted_params_bci_full_2.npy'
 np.save(fitted_param_path, best_params)
 
 # store the whole params
-fitted_param_path = '../fitted_params/fitted_params_7_all.npy'
+fitted_param_path = '../fitted_params/fitted_params_bci_full_2_all.npy'
 np.save(fitted_param_path, params_stored)
 
 # neg_log = []  # use to record the neg-log-multi-nomial likelihood
