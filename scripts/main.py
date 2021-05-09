@@ -16,7 +16,7 @@ with open(pkl_path, 'rb') as f:
     data = pickle.load(f)
 
 # set the model
-model= 'BCI' #'JPM'
+model= 'JPM' #'JPM'
 implementation='full'
 preprocess = True
 print('MODEL CHOSE: {}\t{}\tpreprocess:{}'.format(model,implementation,preprocess))
@@ -25,7 +25,7 @@ print('MODEL CHOSE: {}\t{}\tpreprocess:{}'.format(model,implementation,preproces
 # define the free parameters
 init_para = get_random_free_params(model=model,implementation=implementation)
 
-N_trails = 50
+N_trails = 5
 num_tester = 16
 if model == 'JPM' and implementation == 'full':
     num_params = 14
@@ -44,15 +44,22 @@ neg_log_record = np.zeros((N_trails,num_tester))
 
 nan_check = [False] * num_tester
 
+if model == 'JPM':
+    neg_log_function = neg_log_guassian
+elif model == 'BCI':
+    neg_log_function = neg_log_bci
+else:
+    raise Exception('Not Implemented Error')
+
 
 for j in tqdm(range(num_tester)):
     for i in tqdm(range(N_trails)):
         x0 = get_random_free_params(model=model,implementation=implementation)
-        res = minimize(neg_log_bci, x0, args=(j, data, model, implementation,preprocess), method='Nelder-Mead', tol=1e-4)  # BFGS,Newton-CG
+        res = minimize(neg_log_function, x0, args=(j, data, model, implementation,preprocess), method='BFGS', tol=1e-4)  # BFGS,Newton-CG
         params_stored[i,j,:] = parameter_prepocess(res.x,model=model,implementation=implementation,preprocess=preprocess)
 
         # record the neg-log value (for choosing the lowest one)
-        neg_log = neg_log_bci(res.x, j, data, model, implementation,preprocess)
+        neg_log = neg_log_function(res.x, j, data, model, implementation,preprocess)
         # neg_log_2 = res.fun
         neg_log_record[i, j] = neg_log
 
@@ -80,11 +87,11 @@ best_params = np.array(best_params)
 print('best_params:{}'.format(best_params))
 
 # store the best
-fitted_param_path = '../fitted_params/fitted_params_bci_full_2.npy'
+fitted_param_path = '../fitted_params/fitted_params_jpm_full_1.npy'
 np.save(fitted_param_path, best_params)
 
 # store the whole params
-fitted_param_path = '../fitted_params/fitted_params_bci_full_2_all.npy'
+fitted_param_path = '../fitted_params/fitted_params_jpm_full_1_all.npy'
 np.save(fitted_param_path, params_stored)
 
 # neg_log = []  # use to record the neg-log-multi-nomial likelihood

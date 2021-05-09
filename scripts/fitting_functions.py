@@ -318,8 +318,6 @@ def neg_log_guassian(x0, tester_index, data, model, implementation, preprocess =
     return whole_res
 
 def neg_log_bci(x0, tester_index, data, model, implementation, preprocess = False, coef_lambda = 7):
-    # not implemented for other model
-    # JPM full implementation
     sigma_vh_raw, sigma_vm_raw, sigma_vl_raw, sigma_ah_raw, sigma_am_raw, sigma_al_raw = x0[6:12]
     # x0 = p_s, p_a, mu_vg, mu_vb, mu_ag, mu_ab,sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al,c
     preprocess_x0 = parameter_prepocess(x0, model, implementation, preprocess)
@@ -405,8 +403,10 @@ def neg_log_bci(x0, tester_index, data, model, implementation, preprocess = Fals
     res_avb_a = log_max_likelihood_bci(data['AVB']['asynch']['counts'][tester_index, :, :],
                                        mus_pc1, sigmas_pc1, mus_pc2, sigmas_pc2, c, p_a)
 
-    res = res_ab + res_ag + res_vb + res_vg + 2 * res_avfus_s + 2 * res_avg_s + 2 * res_avb_s + \
-          2 * res_avfus_a + 2 * res_avg_a + 2 * res_avb_a
+    # res = res_ab + res_ag + res_vb + res_vg + 2 * res_avfus_s + 2 * res_avg_s + 2 * res_avb_s + \
+    #       2 * res_avfus_a + 2 * res_avg_a + 2 * res_avb_a
+    res = res_ab + res_ag + res_vb + res_vg + res_avfus_s +  res_avg_s + res_avb_s + \
+          res_avfus_a + res_avg_a + res_avb_a
 
     # set the regularization term as the penalty on big sigmas
     sigs = np.array([sigma_vh_raw, sigma_vm_raw, sigma_vl_raw, sigma_ah_raw, sigma_am_raw, sigma_al_raw])

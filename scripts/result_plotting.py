@@ -11,20 +11,33 @@ with open(pkl_path, 'rb') as f:
 
 # get the params
 # fitted_param_path = '../S2_data/fitted_params_6.npy'
-fitted_param_path = '../fitted_params/fitted_params_11.npy'
-# fitted_param_path = '../fitted_params/fitted_params_bci_full_1.npy'
+# fitted_param_path = '../fitted_params/fitted_params_11.npy'
+# fitted_param_path = '../fitted_params/fitted_params_bci_full_2.npy'
+fitted_param_path = '../fitted_params/fitted_params_jpm_full_1.npy'
 params_stored= np.load(fitted_param_path)
 print(params_stored.shape)
 # print(params_stored)
 print(np.mean(params_stored,axis=0))
 print(np.std(params_stored,axis=0)/16)
 
+model = 'JPM'
+implementation ='full'
+
 # verify
+neg_log_sum = 0
 for i in range(16):
-    neg_log = neg_log_guassian(params_stored[i,:], i, data, model='JPM', implementation='full',preprocess=False)
+    if model == 'JPM':
+        neg_log = neg_log_guassian(params_stored[i,:], i, data, model=model, implementation=implementation,preprocess=False)
     # params_stored[i,:] = parameter_prepocess(params_stored[i,:],model='JPM',implementation='full',preprocess=True)
-    print(params_stored[i,:])
-    print('{}:{}\n'.format(i,neg_log))
+    elif model =='BCI':
+        neg_log =neg_log_bci(params_stored[i,:], i, data, model=model, implementation=implementation, preprocess = False)
+    else:
+        raise Exception('Not Implemented Error.')
+
+    # print(params_stored[i,:])
+    print('{}:{}'.format(i,neg_log))
+    neg_log_sum+=neg_log
+print('########\nneg log sum:{}\n########'.format(neg_log_sum))
 
 num_tester = 16
 props_with_fitted_data = {}
