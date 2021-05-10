@@ -10,11 +10,12 @@ ALPHA = 0.3
 FONTSIZE= 10
 TEXT_Y = [0.35,0.4,0.48]
 
+
 # 4,8,14 - larger DA prob
 # 9,13 - large DA area but not overlapping
 # 5,6,15 - more obvious 2-peak
 # 1,12 - DA prob ~ 0
-test_index = 15
+test_index = 1
 print('tester index:{}'.format(test_index))
 
 fitted_param_path_bci = '../fitted_params/fitted_params_bci_full_1.npy'
@@ -30,6 +31,8 @@ pkl_path = '../S2_data/data.pkl'
 with open(pkl_path, 'rb') as f:
     data = pickle.load(f)
 
+
+# print(data['AVFus']['synch']['snr'])
 
 x0 = params_stored_bci[test_index,:]
 p_s,p_a = x0[0:2]

@@ -6,6 +6,8 @@ import math
 
 high_b = 3
 low_b = -3
+LAMBDA = 0
+
 
 def softmax(arr):
     """
@@ -204,11 +206,11 @@ def get_params_AV(mu_1, mu_2, sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am,
     # get the mu_av, sigma_av
 
     # Vhi_Ahi,Vmid_Ahi,Vlo_Ahi,Vhi_Amid,Vhi_Alo
-    mu_Vhi_Ahi, sigma_Vhi_Ahi = get_av(mu_1, mu_2, sigma_vh, sigma_ah,sigma_0=sigma_0)
-    mu_Vmid_Ahi, sigma_Vmid_Ahi = get_av(mu_1, mu_2, sigma_vm, sigma_ah,sigma_0=sigma_0)
-    mu_Vlo_Ahi, sigma_Vlo_Ahi = get_av(mu_1, mu_2, sigma_vl, sigma_ah,sigma_0=sigma_0)
-    mu_Vhi_Amid, sigma_Vhi_Amid = get_av(mu_1, mu_2, sigma_vh, sigma_am,sigma_0=sigma_0)
-    mu_Vhi_Alo, sigma_Vhi_Alo = get_av(mu_1, mu_2, sigma_vh, sigma_al,sigma_0=sigma_0)
+    mu_Vhi_Ahi, sigma_Vhi_Ahi = get_av(mu_1, mu_2, sigma_ah,sigma_vh,sigma_0=sigma_0)
+    mu_Vmid_Ahi, sigma_Vmid_Ahi = get_av(mu_1, mu_2,sigma_ah,sigma_vm,sigma_0=sigma_0)
+    mu_Vlo_Ahi, sigma_Vlo_Ahi = get_av(mu_1, mu_2, sigma_ah, sigma_vl,sigma_0=sigma_0)
+    mu_Vhi_Amid, sigma_Vhi_Amid = get_av(mu_1, mu_2, sigma_am, sigma_vh,sigma_0=sigma_0)
+    mu_Vhi_Alo, sigma_Vhi_Alo = get_av(mu_1, mu_2, sigma_al, sigma_vh,sigma_0=sigma_0)
 
     mus = np.array([mu_Vhi_Ahi, mu_Vmid_Ahi, mu_Vlo_Ahi, mu_Vhi_Amid, mu_Vhi_Alo])
     sigmas = np.array([sigma_Vhi_Ahi, sigma_Vmid_Ahi, sigma_Vlo_Ahi, sigma_Vhi_Amid, sigma_Vhi_Alo])
@@ -216,7 +218,7 @@ def get_params_AV(mu_1, mu_2, sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am,
 
 
 
-def neg_log_guassian(x0, tester_index, data, model, implementation, preprocess = False, coef_lambda = 7):
+def neg_log_guassian(x0, tester_index, data, model, implementation, preprocess = False, coef_lambda = LAMBDA):
 
     # not implemented for other model
     # JPM full implementation
@@ -317,7 +319,7 @@ def neg_log_guassian(x0, tester_index, data, model, implementation, preprocess =
 
     return whole_res
 
-def neg_log_bci(x0, tester_index, data, model, implementation, preprocess = False, coef_lambda = 7):
+def neg_log_bci(x0, tester_index, data, model, implementation, preprocess = False, coef_lambda = LAMBDA):
     sigma_vh_raw, sigma_vm_raw, sigma_vl_raw, sigma_ah_raw, sigma_am_raw, sigma_al_raw = x0[6:12]
     # x0 = p_s, p_a, mu_vg, mu_vb, mu_ag, mu_ab,sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al,c
     preprocess_x0 = parameter_prepocess(x0, model, implementation, preprocess)

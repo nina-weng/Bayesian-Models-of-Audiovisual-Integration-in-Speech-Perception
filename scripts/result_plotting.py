@@ -13,7 +13,7 @@ with open(pkl_path, 'rb') as f:
 # fitted_param_path = '../S2_data/fitted_params_6.npy'
 # fitted_param_path = '../fitted_params/fitted_params_11.npy'
 # fitted_param_path = '../fitted_params/fitted_params_bci_full_2.npy'
-fitted_param_path = '../fitted_params/fitted_params_jpm_full_1.npy'
+fitted_param_path = '../fitted_params/fitted_params_jpm_reduced_6.npy'
 params_stored= np.load(fitted_param_path)
 print(params_stored.shape)
 # print(params_stored)
@@ -155,7 +155,7 @@ def plot_avsituation(k):
 
             ax[i, j].set_xticks(x)
             ax[i, j].set_xticklabels(labels)
-            if (i == 0 and j == 3):
+            if (i == 0 and j == 2):
                 ax[i, j].legend()
             ax[i, j].bar_label(rects1, padding=3, fmt='%.2f')
             ax[i, j].bar_label(rects2, padding=3, fmt='%.2f')
@@ -163,7 +163,7 @@ def plot_avsituation(k):
             ax[i, j].bar_label(rects4, padding=3, fmt='%.2f')
 
             ax[i, j].set_ylim(0, 1)
-            ax[i, j].set_title(k + '  ' + 'V-' + snrs_index[j] + ',A-' + snrs_index[i])
+            ax[i, j].set_title(k + '  ' + 'V-' + snrs_index[j] + ',A-' + snrs_index[i]+'[{},{}]'.format(i,j))
             cnt += 1
 
     plt.show()
