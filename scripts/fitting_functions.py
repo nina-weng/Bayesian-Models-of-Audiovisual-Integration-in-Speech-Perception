@@ -6,7 +6,7 @@ import math
 
 high_b = 3
 low_b = -3
-LAMBDA = 0
+LAMBDA = 7
 
 
 def softmax(arr):

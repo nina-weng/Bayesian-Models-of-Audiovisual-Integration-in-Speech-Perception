@@ -55,7 +55,7 @@ else:
 for j in tqdm(range(num_tester)):
     for i in tqdm(range(N_trails)):
         x0 = get_random_free_params(model=model,implementation=implementation)
-        res = minimize(neg_log_function, x0, args=(j, data, model, implementation,preprocess), method='BFGS', tol=1e-6)  # Nelder-Mead,BFGS,L-BFGS-B
+        res = minimize(neg_log_function, x0, args=(j, data, model, implementation,preprocess), method='BFGS', tol=1e-4)  # Nelder-Mead,BFGS,L-BFGS-B
         params_stored[i,j,:] = parameter_prepocess(res.x,model=model,implementation=implementation,preprocess=preprocess)
 
         # record the neg-log value (for choosing the lowest one)
@@ -87,11 +87,11 @@ best_params = np.array(best_params)
 print('best_params:{}'.format(best_params))
 
 # store the best
-fitted_param_path = '../fitted_params/fitted_params_jpm_reduced_7.npy'
+fitted_param_path = '../fitted_params/fitted_params_jpm_reduced_8.npy'
 np.save(fitted_param_path, best_params)
 
 # store the whole params
-fitted_param_path = '../fitted_params/fitted_params_jpm_reduced_7_all.npy'
+fitted_param_path = '../fitted_params/fitted_params_jpm_reduced_8_all.npy'
 np.save(fitted_param_path, params_stored)
 
 # neg_log = []  # use to record the neg-log-multi-nomial likelihood

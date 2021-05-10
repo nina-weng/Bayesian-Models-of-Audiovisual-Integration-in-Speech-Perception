@@ -3,8 +3,37 @@
   <component name="ChangeListManager">
     <list default="true" id="779c57b2-3a3e-4c32-88ed-ab5b8cf013f8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_10.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_10_all.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_7.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_7_all.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_8.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_8_all.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_9.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_9_all.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_bci_full_1.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_bci_full_2.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_bci_full_2_all.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_bci_full_all.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_full_1.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_full_1_all.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_full_2.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_full_2_all.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_reduced_1.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_reduced_1_all.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_reduced_2.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_reduced_2_all.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_reduced_3.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_reduced_3_all.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_reduced_4.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_reduced_4_all.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_reduced_5.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_reduced_5_all.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_reduced_6.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_jpm_reduced_6_all.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_reduced_1.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fitted_params/fitted_params_reduced_1_all.npy" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/fitting_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/fitting_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/gaussian_vis.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/gaussian_vis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/result_plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/result_plotting.py" afterDir="false" />
     </list>
@@ -19,16 +48,16 @@
     <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$gaussian_heatmap.coverage" NAME="gaussian_heatmap Coverage Results" MODIFIED="1620549843091" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$fitting_functions.coverage" NAME="fitting_functions Coverage Results" MODIFIED="1619520155011" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$gaussian_vis.coverage" NAME="gaussian_vis Coverage Results" MODIFIED="1620662986559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$result_plotting.coverage" NAME="result_plotting Coverage Results" MODIFIED="1620668697930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$main.coverage" NAME="main Coverage Results" MODIFIED="1620669857693" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$result_plotting.coverage" NAME="result_plotting Coverage Results" MODIFIED="1620674779277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$main.coverage" NAME="main Coverage Results" MODIFIED="1620672594177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
+            <state relative-caret-position="211">
+              <caret line="54" column="33" lean-forward="true" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -48,11 +77,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="result_plotting.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="result_plotting.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/result_plotting.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="69" column="43" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="43" />
+            <state relative-caret-position="216">
+              <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -60,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fitting_functions.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fitting_functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/fitting_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="407" column="37" selection-start-line="407" selection-start-column="37" selection-end-line="407" selection-end-column="37" />
+            <state relative-caret-position="90">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -92,9 +121,9 @@
         <option value="$PROJECT_DIR$/scripts/gussian_heatmap.py" />
         <option value="$PROJECT_DIR$/scripts/gaussian_heatmap.py" />
         <option value="$PROJECT_DIR$/scripts/gaussian_vis.py" />
-        <option value="$PROJECT_DIR$/scripts/result_plotting.py" />
-        <option value="$PROJECT_DIR$/scripts/main.py" />
         <option value="$PROJECT_DIR$/scripts/fitting_functions.py" />
+        <option value="$PROJECT_DIR$/scripts/main.py" />
+        <option value="$PROJECT_DIR$/scripts/result_plotting.py" />
       </list>
     </option>
   </component>
@@ -156,7 +185,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.result_plotting">
     <configuration name="fitting_functions" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Bayesian-Models-of-Audiovisual-Integration-in-Speech-Perception" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -261,8 +290,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.result_plotting" />
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.gaussian_vis" />
         <item itemvalue="Python.gaussian_heatmap" />
         <item itemvalue="Python.fitting_functions" />
@@ -283,21 +312,21 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32952926" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27389443" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.27389443" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32952926" />
       <window_info anchor="right" id="Remote Host" order="3" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14075068" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.41823056" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32952926" />
+      <window_info active="true" anchor="right" id="SciView" order="3" visible="true" weight="0.41823056" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39942938" />
@@ -307,7 +336,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32952926" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -693,16 +721,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/result_plotting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="69" column="43" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/gaussian_vis.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
@@ -715,8 +733,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
+        <state relative-caret-position="211">
+          <caret line="54" column="33" lean-forward="true" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
@@ -725,8 +743,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/fitting_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="407" column="37" selection-start-line="407" selection-start-column="37" selection-end-line="407" selection-end-column="37" />
+        <state relative-caret-position="90">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/result_plotting.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
