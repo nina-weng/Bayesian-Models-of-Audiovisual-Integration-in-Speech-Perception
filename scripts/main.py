@@ -17,7 +17,7 @@ with open(pkl_path, 'rb') as f:
 
 # set the model
 model= 'JPM' #'JPM'
-implementation='reduced'
+implementation='full'
 preprocess = True
 print('MODEL CHOSE: {}\t{}\tpreprocess:{}'.format(model,implementation,preprocess))
 
@@ -25,7 +25,7 @@ print('MODEL CHOSE: {}\t{}\tpreprocess:{}'.format(model,implementation,preproces
 # define the free parameters
 init_para = get_random_free_params(model=model,implementation=implementation)
 
-N_trails = 5
+N_trails = 10
 num_tester = 16
 if model == 'JPM' and implementation == 'full':
     num_params = 14
@@ -87,11 +87,11 @@ best_params = np.array(best_params)
 print('best_params:{}'.format(best_params))
 
 # store the best
-fitted_param_path = '../fitted_params/fitted_params_jpm_reduced_8.npy'
+fitted_param_path = '../fitted_params/fitted_params_jpm_full_4.npy'
 np.save(fitted_param_path, best_params)
 
 # store the whole params
-fitted_param_path = '../fitted_params/fitted_params_jpm_reduced_8_all.npy'
+fitted_param_path = '../fitted_params/fitted_params_jpm_full_4_all.npy'
 np.save(fitted_param_path, params_stored)
 
 # neg_log = []  # use to record the neg-log-multi-nomial likelihood

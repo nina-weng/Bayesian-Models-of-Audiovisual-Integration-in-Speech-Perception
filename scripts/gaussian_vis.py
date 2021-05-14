@@ -11,15 +11,16 @@ FONTSIZE= 10
 TEXT_Y = [0.35,0.4,0.48]
 
 
-# 4,8,14 - larger DA prob
-# 9,13 - large DA area but not overlapping
-# 5,6,15 - more obvious 2-peak
-# 1,12 - DA prob ~ 0
+
+
+# 5,6,7,12 - more obvious 2-peak (dissimilar)
+# 1,3,10,12 - DA prob ~ 0
+# 0,2,4,8,9,11,13,14,15 - quite similar with the other model
 test_index = 1
 print('tester index:{}'.format(test_index))
 
 fitted_param_path_bci = '../fitted_params/fitted_params_bci_full_1.npy'
-fitted_param_path_jpm = '../fitted_params/fitted_params_11.npy'
+fitted_param_path_jpm = '../fitted_params/fitted_params_jpm_full_1.npy'
 params_stored_bci = np.load(fitted_param_path_bci)
 params_stored_jpm = np.load(fitted_param_path_jpm)
 # print(fitted_param_path_bci.shape)
@@ -93,11 +94,11 @@ for i in range(5):
 
         if j == 0:
             p = p_s
-            title_str = sub_plot_title[i]+' synchrony'
+            # title_str = sub_plot_title[i]+' synchrony'
             res_prob= res_prob_s
         else:
             p = p_a
-            title_str = sub_plot_title[i]+' asynchrony'
+            # title_str = sub_plot_title[i]+' asynchrony'
             res_prob = res_prob_a
 
 
@@ -164,7 +165,7 @@ for i in range(5):
                        fontsize=FONTSIZE, ha='center', va='center')
         axs[i, j].text(c_jpm[1] / 2 + PLOT_RANGE / 2, TEXT_Y[2], s='BA\n{}'.format(ori_prob[i, 2]),
                        fontsize=FONTSIZE, ha='center', va='center')
-        axs[i, j].set_title(title_str)
+        axs[i, j].set_title(sub_plot_title[i])
 
         #generalsetting
         axs[i, j].set_ylim(0,0.55)
@@ -175,8 +176,8 @@ for i in range(5):
         # axs[i,1].text(-4.75,0.4,s='p_a={:.4f}'.format(p_a),fontsize=12)
 
         axs[i,1].legend(bbox_to_anchor=(1.04,1),loc="upper left", borderaxespad=0)
-        axs[i,0].set_title(sub_plot_title[i]+' synchrony\n$\sigma_0^2={:.4f}$\nP(C=1)={:.2f}    P(C=2)={:.2f}'.format(sigma_0_s**2,p_s,1-p_s))
-        axs[i,1].set_title(sub_plot_title[i]+' asynchrony\n$\sigma_0^2={:.4f}$\nP(C=1)={:.2f}    P(C=2)={:.2f}'.format(sigma_0_a**2,p_a,1-p_a))
+        axs[i,0].set_title('Synchrony\n$\sigma_0^2={:.4f}$\nP(C=1)={:.2f}    P(C=2)={:.2f}'.format(sigma_0_s**2,p_s,1-p_s)+'\n\n'+sub_plot_title[i])
+        axs[i,1].set_title('Asynchrony\n$\sigma_0^2={:.4f}$\nP(C=1)={:.2f}    P(C=2)={:.2f}'.format(sigma_0_a**2,p_a,1-p_a)+'\n\n'+sub_plot_title[i])
 
 
 fig.suptitle('tester No.{}'.format(test_index), fontsize=14)

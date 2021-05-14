@@ -299,8 +299,13 @@ def neg_log_guassian(x0, tester_index, data, model, implementation, preprocess =
           res_avfus_a + res_avg_a + res_avb_a
 
     # set the regularization term as the penalty on big sigmas
-    sigs = np.array([sigma_vh_raw, sigma_vm_raw, sigma_vl_raw, sigma_ah_raw, sigma_am_raw, sigma_al_raw])
-    regularization_term = coef_lambda * np.sum(sigs**2)
+    # Regularization method 1
+    sigs_raw = np.array([sigma_vh_raw, sigma_vm_raw, sigma_vl_raw, sigma_ah_raw, sigma_am_raw, sigma_al_raw])
+    regularization_term = coef_lambda * np.sum(sigs_raw ** 2)
+
+    # Regularization method 2
+    sigs = np.array([sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al])
+    regularization_term = coef_lambda * np.sum((1 / sigs) ** 2)
 
     whole_res = -res + regularization_term
 
@@ -411,8 +416,13 @@ def neg_log_bci(x0, tester_index, data, model, implementation, preprocess = Fals
           res_avfus_a + res_avg_a + res_avb_a
 
     # set the regularization term as the penalty on big sigmas
-    sigs = np.array([sigma_vh_raw, sigma_vm_raw, sigma_vl_raw, sigma_ah_raw, sigma_am_raw, sigma_al_raw])
-    regularization_term = coef_lambda * np.sum(sigs ** 2)
+    # Regularization method 1
+    sigs_raw = np.array([sigma_vh_raw, sigma_vm_raw, sigma_vl_raw, sigma_ah_raw, sigma_am_raw, sigma_al_raw])
+    regularization_term = coef_lambda * np.sum(sigs_raw ** 2)
+
+    # Regularization method 2
+    sigs = np.array([sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al])
+    regularization_term = coef_lambda * np.sum((1/sigs) ** 2)
 
     whole_res = -res + regularization_term
 
@@ -469,7 +479,7 @@ def parameter_prepocess( x0,model, implementation,preprocess=False):
         # for sigma -> use exponential function to convert sigma to (1, +inf)
         sigs = [sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al]
         # method 0: [np.sqrt(np.exp(sig ** 2)) for sig in sigs]
-        [sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al] = [np.exp(np.abs(sig)) for sig in
+        [sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al] = [np.exp(sig) for sig in
                                                                         sigs]  # np.exp(np.abs(sig))
         # intervals/boundaries
         softmaxBounds = softmax([c])
