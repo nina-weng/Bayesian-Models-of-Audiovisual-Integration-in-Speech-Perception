@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="779c57b2-3a3e-4c32-88ed-ab5b8cf013f8" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/scripts/confidence_rating.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/exam_models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/fitting_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/fitting_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/gaussian_vis.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/gaussian_vis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/model_results_validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/model_results_validation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/result_plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/result_plotting.py" afterDir="false" />
-    </list>
+    <list default="true" id="779c57b2-3a3e-4c32-88ed-ab5b8cf013f8" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +48,7 @@
       <file leaf-file-name="exam_models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/exam_models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
+            <state relative-caret-position="385">
               <caret line="231" column="38" lean-forward="true" selection-start-line="231" selection-start-column="38" selection-end-line="231" selection-end-column="38" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -843,7 +835,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/exam_models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
+        <state relative-caret-position="385">
           <caret line="231" column="38" lean-forward="true" selection-start-line="231" selection-start-column="38" selection-end-line="231" selection-end-column="38" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
