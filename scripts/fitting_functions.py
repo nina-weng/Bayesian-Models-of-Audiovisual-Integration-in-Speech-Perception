@@ -64,20 +64,23 @@ def guassian2prob(mu, sigma, c):
     input:
     - mu: mean of truncated Gaussian,shape [m * 1]
     - sigma: shape [m * 1]
-    - c: the intervals [m * 2] or uniformed ([1 * 2])
+    - c: the intervals [m * (k-1)] or uniformed ([1 * (k-1)])
+    k is the number of response
     it could be same for all stimuli, or could be different for different stimuli
 
     output:
-    - response_probs: [m * 3] responsed probabilities
+    - response_probs: [m * k] responsed probabilities
     """
     m = len(mu)
-    response_probs = np.zeros((m, 3))
+    k = len(c)
+    # print(k)
+    response_probs = np.zeros((m, k+1))
     low = low_b
     high = high_b
 
 
 
-    c = c.reshape(-1, 2)
+    c = c.reshape(-1, k)
     #     print(c.shape)
 
 
@@ -93,12 +96,27 @@ def guassian2prob(mu, sigma, c):
     up_boundary = scipy.stats.norm.cdf(high, mu, sigma)
     normalization_constant = up_boundary - low_boundary
 
-    resp_bound_low = scipy.stats.norm.cdf(c[:, 0], mu, sigma)
-    resp_bound_high = scipy.stats.norm.cdf(c[:, 1], mu, sigma)
+    # resp_bound_low = scipy.stats.norm.cdf(c[:, 0], mu, sigma)
+    # resp_bound_high = scipy.stats.norm.cdf(c[:, 1], mu, sigma)
 
-    response_probs[:, 0] = np.exp(np.log(resp_bound_low - low_boundary) - np.log(normalization_constant))
-    response_probs[:, 1] = np.exp(np.log(resp_bound_high - resp_bound_low) - np.log(normalization_constant))
-    response_probs[:, 2] = np.exp(np.log(up_boundary - resp_bound_high) - np.log(normalization_constant))
+    resp_bounds = np.zeros((k,m))
+    for i in range(k):
+        resp_bounds[i,:] = scipy.stats.norm.cdf(c[:, i], mu, sigma)
+
+
+    response_probs = np.zeros((m,k+1))
+    for i in range(k+1):
+        if i == 0:
+            response_probs[:,i] =np.exp(np.log(resp_bounds[i] - low_boundary) - np.log(normalization_constant))
+        elif i == k:
+            response_probs[:, i] = np.exp(np.log(up_boundary - resp_bounds[i-1]) - np.log(normalization_constant))
+        else:
+            response_probs[:,i] = np.exp(np.log(resp_bounds[i] - resp_bounds[i-1]) - np.log(normalization_constant))
+
+    # response_probs_2 = np.zeros((m, k + 1))
+    # response_probs_2[:, 0] = np.exp(np.log(resp_bound_low - low_boundary) - np.log(normalization_constant))
+    # response_probs_2[:, 1] = np.exp(np.log(resp_bound_high - resp_bound_low) - np.log(normalization_constant))
+    # response_probs_2[:, 2] = np.exp(np.log(up_boundary - resp_bound_high) - np.log(normalization_constant))
 
     # if (resp_bound_high - resp_bound_low).any() <=0:
     #     # print(c)
@@ -110,7 +128,7 @@ def guassian2prob(mu, sigma, c):
 
 def log_max_likelihood_each(counts, mu, sigma, c):
     '''
-    compute the maximum log likelihood
+    compute the maximum log likelihood for multinomial distribution
 
     input:
     - counts: shape of [m, 3]
@@ -120,7 +138,7 @@ def log_max_likelihood_each(counts, mu, sigma, c):
     x = np.array(counts)
     # print(c)
 
-    if c[1] >= high_b or c[0] <= low_b :
+    if c[-1] >= high_b or c[0] <= low_b :
         # print(c)
         return -1e6
 
@@ -130,7 +148,9 @@ def log_max_likelihood_each(counts, mu, sigma, c):
 
     N = np.sum(x, axis=1)
 
-    log_N_fact = np.log(factorial(N))
+    # log_N_fact = np.log(factorial(N))
+    N_list = np.arange(1,N+1)
+    log_N_fact = np.sum(np.log(N_list))
 
     sum_log_fact = np.sum(np.log(factorial(x)), axis=1)
 
@@ -161,7 +181,7 @@ def log_max_likelihood_bci(counts, mu_pc1, sigma_pc1, mu_pc2, sigma_pc2,c, p):
     x = np.array(counts)
     # print(c)
 
-    if c[1] >= high_b or c[0] <= low_b :
+    if c[-1] >= high_b or c[0] <= low_b :
         # print(c)
         return -1e6
 
@@ -174,7 +194,9 @@ def log_max_likelihood_bci(counts, mu_pc1, sigma_pc1, mu_pc2, sigma_pc2,c, p):
 
     N = np.sum(x, axis=1)
 
-    log_N_fact = np.log(factorial(N))
+    # log_N_fact = np.log(factorial(N))
+    N_list = np.arange(1, N + 1)
+    log_N_fact = np.sum(np.log(N_list))
 
     sum_log_fact = np.sum(np.log(factorial(x)), axis=1)
 
@@ -517,3 +539,217 @@ def parameter_prepocess( x0,model, implementation,preprocess=False):
 # print(regularization_term)
 
 # print(get_av(1,0.5,1.2,3,np.inf))
+
+
+def neg_log_jpm_for1tester(x0, data_sample, model, implementation, preprocess = False, coef_lambda = LAMBDA):
+
+
+    sigma_vh_raw, sigma_vm_raw, sigma_vl_raw, sigma_ah_raw, sigma_am_raw, sigma_al_raw = x0[6:12]
+
+    preprocess_x0 = parameter_prepocess_9cates(x0,model,implementation,preprocess)
+
+    sigma_0_s, sigma_0_a = preprocess_x0[0:2]
+    [mu_vg, mu_vb, mu_ag, mu_ab] = preprocess_x0[2:6]
+    [sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al] = preprocess_x0[6:12]
+    c = preprocess_x0[12:]
+
+    # SNR: V-high, A-low
+    sigma_a = sigma_al
+    sigma_v = sigma_vh
+    snr_type = 4
+
+
+
+    # data['AB']
+    res_ab = log_max_likelihood_each(data_sample['AB']['counts'].reshape(1,-1),
+                                     np.array([mu_ab]),
+                                     np.array([sigma_a]), c)
+
+    # data['AG']
+    res_ag = log_max_likelihood_each(data_sample['AG']['counts'].reshape(1,-1),
+                                     np.array([mu_ag]),
+                                     np.array([sigma_a]), c)
+
+    # data['VB']
+    res_vb = log_max_likelihood_each(data_sample['VB']['counts'].reshape(1,-1),
+                                     np.array([mu_vb]),
+                                     np.array([sigma_v]), c)
+
+    # data['VG']
+    res_vg = log_max_likelihood_each(data_sample['VG']['counts'].reshape(1,-1),
+                                     np.array([mu_vg]),
+                                     np.array([sigma_v]), c)
+
+
+    # ASYNCH part
+    # data['AVFus']['asynch']
+    # AVFus -> auditory B , visual G
+    mus, sigmas = get_params_AV(mu_ab, mu_vg, sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al,
+                                sigma_0=sigma_0_a)
+    #     print('AVFus,mus:{}'.format(mus))
+    #     print('AVFus,sigmas:{}'.format(sigmas))
+    res_avfus_a = log_max_likelihood_each(data_sample['AVFus']['counts'].reshape(1,-1),
+                                          [mus[snr_type]], [sigmas[snr_type]], c)
+
+    # data['AVG']['asynch']
+    mus, sigmas = get_params_AV(mu_ag, mu_vg, sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al,
+                                sigma_0=sigma_0_a)
+    res_avg_a = log_max_likelihood_each(data_sample['AVG']['counts'].reshape(1,-1),
+                                        [mus[snr_type]], [sigmas[snr_type]], c)
+
+    # data['AVB']['asynch']
+    mus, sigmas = get_params_AV(mu_ab, mu_vb, sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al,
+                                sigma_0=sigma_0_a)
+    res_avb_a = log_max_likelihood_each(data_sample['AVB']['counts'].reshape(1,-1),
+                                        [mus[snr_type]], [sigmas[snr_type]], c)
+
+
+    res = res_ab + res_ag + res_vb + res_vg + \
+          5*res_avfus_a + res_avg_a + res_avb_a
+
+    # set the regularization term as the penalty on big sigmas
+    # Regularization method 1
+    sigs_raw = np.array([sigma_vh_raw, sigma_vm_raw, sigma_vl_raw, sigma_ah_raw, sigma_am_raw, sigma_al_raw])
+    regularization_term = coef_lambda * np.sum(sigs_raw ** 2)
+
+    # Regularization method 2
+    sigs = np.array([sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al])
+    regularization_term = coef_lambda * np.sum((1 / sigs) ** 2)
+
+    whole_res = -res + regularization_term
+
+    return whole_res
+
+
+def neg_log_bci_for1tester(x0, data_sample, model, implementation, preprocess = False, coef_lambda = LAMBDA):
+
+    sigma_vh_raw, sigma_vm_raw, sigma_vl_raw, sigma_ah_raw, sigma_am_raw, sigma_al_raw = x0[6:12]
+    preprocess_x0 = parameter_prepocess_9cates(x0, model, implementation, preprocess)
+
+    p_s, p_a = preprocess_x0[0:2]
+    [mu_vg, mu_vb, mu_ag, mu_ab] = preprocess_x0[2:6]
+    [sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al] = preprocess_x0[6:12]
+    c = preprocess_x0[12:]
+
+    # SNR: V-high, A-low
+    sigma_a = sigma_al
+    sigma_v = sigma_vh
+    snr_type = 4
+
+    # data['AB']
+    res_ab = log_max_likelihood_each(data_sample['AB']['counts'].reshape(1, -1),
+                                     np.array([mu_ab]),
+                                     np.array([sigma_a]), c)
+
+    # data['AG']
+    res_ag = log_max_likelihood_each(data_sample['AG']['counts'].reshape(1, -1),
+                                     np.array([mu_ag]),
+                                     np.array([sigma_a]), c)
+
+    # data['VB']
+    res_vb = log_max_likelihood_each(data_sample['VB']['counts'].reshape(1, -1),
+                                     np.array([mu_vb]),
+                                     np.array([sigma_v]), c)
+
+    # data['VG']
+    res_vg = log_max_likelihood_each(data_sample['VG']['counts'].reshape(1, -1),
+                                     np.array([mu_vg]),
+                                     np.array([sigma_v]), c)
+
+
+    # ASYNCH part
+    # data['AVFus']['asynch']
+    # AVFus -> auditory B , visual G
+    mus_pc1, sigmas_pc1 = get_params_AV(mu_ab, mu_vg, sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al,
+                                        sigma_0=0)
+    mus_pc2, sigmas_pc2 = get_params_AV(mu_ab, mu_vg, sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al,
+                                        sigma_0=np.inf)
+    #     print('AVFus,mus:{}'.format(mus))
+    #     print('AVFus,sigmas:{}'.format(sigmas))
+    res_avfus_a = log_max_likelihood_bci(data_sample['AVG']['counts'].reshape(1,-1),
+                                         [mus_pc1[snr_type]], [sigmas_pc1[snr_type]],
+                                         [mus_pc2[snr_type]], [sigmas_pc2[snr_type]], c, p_a)
+
+    # data['AVG']['asynch']
+    mus_pc1, sigmas_pc1 = get_params_AV(mu_ag, mu_vg, sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al,
+                                        sigma_0=0)
+    mus_pc2, sigmas_pc2 = get_params_AV(mu_ag, mu_vg, sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al,
+                                        sigma_0=np.inf)
+    res_avg_a = log_max_likelihood_bci(data_sample['AVG']['counts'].reshape(1,-1),
+                                       [mus_pc1[snr_type]], [sigmas_pc1[snr_type]],
+                                       [mus_pc2[snr_type]], [sigmas_pc2[snr_type]], c, p_a)
+
+    # data['AVB']['asynch']
+    mus_pc1, sigmas_pc1 = get_params_AV(mu_ab, mu_vb, sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al,
+                                        sigma_0=0)
+    mus_pc2, sigmas_pc2 = get_params_AV(mu_ab, mu_vb, sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al,
+                                        sigma_0=np.inf)
+    res_avb_a = log_max_likelihood_bci(data_sample['AVB']['counts'].reshape(1,-1),
+                                       [mus_pc1[snr_type]], [sigmas_pc1[snr_type]],
+                                       [mus_pc2[snr_type]], [sigmas_pc2[snr_type]], c, p_a)
+
+    res = res_ab + res_ag + res_vb + res_vg + \
+          5*res_avfus_a + res_avg_a + res_avb_a
+
+    # set the regularization term as the penalty on big sigmas
+    # Regularization method 1
+    sigs_raw = np.array([sigma_vh_raw, sigma_vm_raw, sigma_vl_raw, sigma_ah_raw, sigma_am_raw, sigma_al_raw])
+    regularization_term = coef_lambda * np.sum(sigs_raw ** 2)
+
+    # Regularization method 2
+    sigs = np.array([sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al])
+    regularization_term = coef_lambda * np.sum((1 / sigs) ** 2)
+
+    whole_res = -res + regularization_term
+
+    return whole_res
+
+
+def parameter_prepocess_9cates(x0,model, implementation,preprocess=False):
+    # get the parameter out from x0
+    if model == 'JPM' and implementation == 'full':
+        if len(x0) != 20:
+            raise Exception('length of parameters do not match model.')
+        sigma_0_s, sigma_0_a = x0[0:2]
+        [mu_vg, mu_vb, mu_ag, mu_ab] = x0[2:6]
+        [sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al] = x0[6:12]
+        c = x0[12:]
+
+    elif model == 'BCI' and implementation == 'full':
+        if len(x0) != 20:
+            raise Exception('length of parameters do not match model.')
+        p_s, p_a = x0[0:2] # p_s,p_a
+        [mu_vg, mu_vb, mu_ag, mu_ab] = x0[2:6]
+        [sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al] = x0[6:12]
+        c = x0[12:]
+
+    else:
+        raise Exception('function not implemented')
+
+    # pre-processing the parameters
+    if preprocess:
+
+        if model == 'BCI':
+            [p_s,p_a] = [sigmoid(p) for p in np.array([p_s,p_a])]
+
+        # for all mus -> use sigmoid to convert into range (-3,3)
+        [mu_vg, mu_vb, mu_ag, mu_ab] = [transfer_sigmoid(mu, range=3) for mu in np.array([mu_vg, mu_vb, mu_ag, mu_ab])]
+        # for sigma -> use exponential function to convert sigma to (1, +inf)
+        sigs = [sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al]
+        # method 0: [np.sqrt(np.exp(sig ** 2)) for sig in sigs]
+        [sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al] = [np.exp(sig) for sig in
+                                                                        sigs]  # np.exp(np.abs(sig))
+        # intervals/boundaries
+        softmaxBounds = softmax([c])
+        c = 6 * (np.cumsum(softmaxBounds) - 0.5)
+
+    if model == 'JPM':
+        new_x0 = np.array([sigma_0_s, sigma_0_a,mu_vg, mu_vb, mu_ag, mu_ab,
+            sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al])
+        new_x0 = np.append(new_x0,c[:-1])
+    elif model == 'BCI':
+        new_x0 = np.array([p_s,p_a, mu_vg, mu_vb, mu_ag, mu_ab,
+                           sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al])
+        new_x0 = np.append(new_x0, c[:-1])
+
+    return new_x0

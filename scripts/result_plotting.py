@@ -13,7 +13,7 @@ with open(pkl_path, 'rb') as f:
 # fitted_param_path = '../S2_data/fitted_params_6.npy'
 # fitted_param_path = '../fitted_params/fitted_params_11.npy'
 # fitted_param_path = '../fitted_params/fitted_params_bci_full_1.npy'
-fitted_param_path = '../fitted_params/fitted_params_jpm_full_4.npy'
+fitted_param_path = '../fitted_params/fitted_params_bci_full_4.npy'
 params_stored= np.load(fitted_param_path)
 print(params_stored.shape)
 # print(params_stored)

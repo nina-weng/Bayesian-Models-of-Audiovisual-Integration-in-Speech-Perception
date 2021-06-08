@@ -183,3 +183,6 @@ plt.show()
 
 
 
+# FIG 4 - E
+plt.figure(figsize=(6,6))
+

@@ -5,7 +5,7 @@ import scipy.stats as stats
 import pickle
 
 
-PLOT_RANGE = 5
+PLOT_RANGE = 6
 ALPHA = 0.3
 FONTSIZE= 10
 TEXT_Y = [0.35,0.4,0.48]
@@ -16,11 +16,11 @@ TEXT_Y = [0.35,0.4,0.48]
 # 5,6,7,12 - more obvious 2-peak (dissimilar)
 # 1,3,10,12 - DA prob ~ 0
 # 0,2,4,8,9,11,13,14,15 - quite similar with the other model
-test_index = 1
+test_index = 12
 print('tester index:{}'.format(test_index))
 
-fitted_param_path_bci = '../fitted_params/fitted_params_bci_full_1.npy'
-fitted_param_path_jpm = '../fitted_params/fitted_params_jpm_full_1.npy'
+fitted_param_path_bci = '../fitted_params/fitted_params_bci_full_4.npy'
+fitted_param_path_jpm = '../fitted_params/fitted_params_jpm_full_4.npy'
 params_stored_bci = np.load(fitted_param_path_bci)
 params_stored_jpm = np.load(fitted_param_path_jpm)
 # print(fitted_param_path_bci.shape)
