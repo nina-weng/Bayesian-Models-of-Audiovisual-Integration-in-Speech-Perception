@@ -4,8 +4,11 @@ from fitting_functions import *
 from tqdm import tqdm
 from utils import get_random_free_params
 from scipy.optimize import minimize
+import matplotlib.pyplot as plt
+import  scipy.stats as stats
 
 ## one trail
+PLOT_RANGE = 8
 
 
 def load_data(exp_data_path,param_jpm_path,param_bci_path):
@@ -23,6 +26,7 @@ def load_data(exp_data_path,param_jpm_path,param_bci_path):
         exp_data = pickle.load(f)
 
     return params_jpm,params_bci,exp_data
+
 
 def load_paramters(params_jpm,params_bci,test_index):
     x0_bci = params_bci[test_index, :]
@@ -69,6 +73,7 @@ def sample2count(samples, boundaries):
                 break
     return counts
 
+
 def sample_mixture_guassion(mu_1,mu_2,sigma_1,sigma_2,p,sample_size):
     # sample the BCI distribution
     distributions = [
@@ -86,6 +91,7 @@ def sample_mixture_guassion(mu_1,mu_2,sigma_1,sigma_2,p,sample_size):
     sample = data_[np.arange(sample_size), random_idx]
 
     return sample
+
 
 def generate_samples(params_dict,sample_size_unit,model='JPM'):
     sample_data ={}
@@ -203,6 +209,110 @@ def fit_model(tester_index,exp_data, N_trails,model = 'JPM', implementation='ful
     return np.nanmin(neg_log_record)
 
 
+def sample_visualization(params_jpm_dict,params_bci_dict,sample_data, sample_data_type):
+    xs = np.linspace(-PLOT_RANGE, PLOT_RANGE, 100)
+
+    # visualize the single stimuli
+    fig_single_stim,axs_single_stim =  plt.subplots(4, 1, figsize=(8, 12))
+    single_keys = ['AB' ,'AG' ,'VB' ,'VG']
+    for i in range(4):
+        key = single_keys[i]
+        mu_key = 'mu_' + key.lower()
+        if key[0] == 'A':sigma_key = 'sigma_a' + A_snr[0]
+        elif key[0] == 'V':sigma_key = 'sigma_v' + V_snr[0]
+        else:raise Exception('Key error.')
+
+        # distribution
+        axs_single_stim[i].plot(xs, stats.norm.pdf(xs, params_jpm_dict[mu_key], params_jpm_dict[sigma_key]),
+                 color='mediumorchid', linewidth=3, label='JPM')
+        axs_single_stim[i].plot(xs, stats.norm.pdf(xs, params_bci_dict[mu_key], params_bci_dict[sigma_key]),
+                                color='limegreen', linewidth=3, label='BCI')
+        axs_single_stim[i].set_title('single stimuli: {}'.format(single_keys[i]))
+
+        # boundaries
+        # set the boundries
+        if sample_data_type == 'JPM': params_dict = params_jpm_dict
+        elif sample_data_type == 'BCI': params_dict = params_bci_dict
+        else: raise Exception('sample data type error:{}'.format(sample_data_type))
+
+        boundaries = np.linspace(params_dict['mu_ag'], params_dict['mu_ab'], 8)
+        span = boundaries[1] - boundaries[0]
+        b_texts = ['GA\n1', 'GA\n2', 'GA\n3', 'DA\n3', 'DA\n2', 'DA\n3', 'BA\n3', 'BA\n2', 'BA\n1']
+
+        ymin = 0
+        ymax = 0.3
+        for j in range(8):
+            axs_single_stim[i].vlines(boundaries[j], ymin=ymin, ymax=ymax, color='grey', alpha=0.5, linewidth=3, linestyle='dashed')
+            axs_single_stim[i].text(boundaries[j] - span / 2, ymax - 0.03, s=b_texts[j], ha='center', fontsize=10)
+            if i == 7:
+                axs_single_stim[i].text(boundaries[j] + span / 2, ymax - 0.03, s=b_texts[j + 1], ha='center', fontsize=10)
+
+
+        # samples
+        bar_position = np.append(boundaries,boundaries[-1]+span) - span/2
+        axs_single_stim[i].bar(bar_position,sample_data[key]['props'],color='skyblue')
+
+
+
+    fig_single_stim.show()
+
+    # get the mu & sigma for both models
+    fig_double_stim, axs_double_stim = plt.subplots(3, 1, figsize=(8, 12))
+    doule_keys = ['AVB' ,'AVG' ,'AVFus']
+    for i in range(3):
+        key = doule_keys[i]
+        if key == 'AVB':mu_key_1, mu_key_2 = 'mu_ab', 'mu_vb'
+        elif key == 'AVG':mu_key_1, mu_key_2 = 'mu_ag', 'mu_vg'
+        elif key == 'AVFus':mu_key_1, mu_key_2 = 'mu_ab', 'mu_vg'
+        else: raise Exception('Key error:{}'.format(key))
+
+        mus_jpm, sigmas_jpm = get_params_AV(params_jpm_dict[mu_key_1], params_jpm_dict[mu_key_2],
+                                            params_jpm_dict['sigma_vh'], params_jpm_dict['sigma_vm'], params_jpm_dict['sigma_vl'],
+                                            params_jpm_dict['sigma_ah'], params_jpm_dict['sigma_am'], params_jpm_dict['sigma_al'],
+                                            sigma_0=params_jpm_dict['sigma_0_a'])
+
+        mus_pc1, sigmas_pc1 = get_params_AV(params_bci_dict[mu_key_1], params_bci_dict[mu_key_2],
+                                            params_bci_dict['sigma_vh'], params_bci_dict['sigma_vm'], params_bci_dict['sigma_vl'],
+                                            params_bci_dict['sigma_ah'], params_bci_dict['sigma_am'], params_bci_dict['sigma_al'],
+                                            sigma_0=0)
+        mus_pc2, sigmas_pc2 = get_params_AV(params_bci_dict[mu_key_1], params_bci_dict[mu_key_2],
+                                            params_bci_dict['sigma_vh'], params_bci_dict['sigma_vm'], params_bci_dict['sigma_vl'],
+                                            params_bci_dict['sigma_ah'], params_bci_dict['sigma_am'], params_bci_dict['sigma_al'],
+                                            sigma_0=np.inf)
+
+        p = params_bci_dict['p_a']
+        # distriution
+        axs_double_stim[i].plot(xs, stats.norm.pdf(xs, mus_jpm[fusion_snr_type], sigmas_jpm[fusion_snr_type]),
+                 color='mediumorchid', linewidth=3, label='JPM')
+        axs_double_stim[i].plot(xs, p * stats.norm.pdf(xs, mus_pc1[fusion_snr_type], sigmas_pc1[fusion_snr_type]) +
+                 (1 - p) * stats.norm.pdf(xs, mus_pc2[fusion_snr_type], sigmas_pc2[fusion_snr_type]),
+                 color='limegreen', linewidth=3, label='BCI')
+        axs_double_stim[i].set_title('double stimuli: {}'.format(doule_keys[i]))
+
+        # boundaries
+        if sample_data_type == 'JPM': params_dict = params_jpm_dict
+        elif sample_data_type == 'BCI': params_dict = params_bci_dict
+        else: raise Exception('sample data type error:{}'.format(sample_data_type))
+
+        boundaries = np.linspace(params_dict['mu_ag'], params_dict['mu_ab'], 8)
+        span = boundaries[1] - boundaries[0]
+        b_texts = ['GA\n1', 'GA\n2', 'GA\n3', 'DA\n3', 'DA\n2', 'DA\n3', 'BA\n3', 'BA\n2', 'BA\n1']
+
+        ymin = 0
+        ymax = 0.3
+        for j in range(8):
+            axs_double_stim[i].vlines(boundaries[j], ymin=ymin, ymax=ymax, color='grey', alpha=0.5, linewidth=3, linestyle='dashed')
+            axs_double_stim[i].text(boundaries[j] - span / 2, ymax - 0.03, s=b_texts[j], ha='center', fontsize=10)
+            if i == 7:
+                axs_double_stim[i].text(boundaries[j] + span / 2, ymax - 0.03, s=b_texts[j + 1], ha='center', fontsize=10)
+        # samples
+        bar_position = np.append(boundaries, boundaries[-1] + span) - span / 2
+        axs_double_stim[i].bar(bar_position, sample_data[key]['props'], color='skyblue')
+
+    fig_double_stim.show()
+
+    return None
+
 
 # define the parameters
 tester_number = 7
@@ -236,6 +346,10 @@ params_jpm_dict,params_bci_dict = load_paramters(params_jpm,params_bci,tester_nu
 # data_sample = generate_samples(params_jpm_dict,sample_size_unit,model='JPM')
 data_sample = generate_samples(params_bci_dict,sample_size_unit,model='BCI')
 print(data_sample)
+
+# visualize the samples in single/double stimuli
+
+sample_visualization(params_jpm_dict,params_bci_dict,data_sample,sample_data_type = 'BCI')
 
 # fit the sample with JPM and BCI model
 N_trails = 5
