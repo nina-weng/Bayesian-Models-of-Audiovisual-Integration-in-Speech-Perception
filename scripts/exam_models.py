@@ -6,6 +6,7 @@ from utils import get_random_free_params
 from scipy.optimize import minimize
 import matplotlib.pyplot as plt
 import  scipy.stats as stats
+import datetime
 
 ## one trail
 PLOT_RANGE = 8
@@ -420,55 +421,71 @@ def fitted_curve_visulization(fig_single_stim,axs_single_stim,fig_double_stim,ax
     fig_double_stim.show()
     return None
 
-# define the parameters
-tester_number = 12
-V_snr = 'high'
-A_snr = 'low'
-snr = 'asynch'  # 'synch'
-sample_size_unit = 25
-
-if V_snr == 'high' and A_snr =='high': fusion_snr_type = 0
-elif V_snr == 'mid' and A_snr =='high':fusion_snr_type = 1
-elif V_snr == 'low' and A_snr =='high':fusion_snr_type = 2
-elif V_snr == 'high' and A_snr =='mid':fusion_snr_type = 3
-elif V_snr == 'high' and A_snr =='low':fusion_snr_type = 4
-else: raise Exception('fusion snr not implemented.')
 
 
-# load in the data
-param_bci_path = '../fitted_params/fitted_params_bci_full_4.npy'
-param_jpm_path = '../fitted_params/fitted_params_jpm_full_4.npy'
-print('jpm parameters from :{}'.format(param_jpm_path))
-print('bci parameters from :{}'.format(param_bci_path))
-pkl_path = '../S2_data/data.pkl'
-print('experiment data from :{}'.format(pkl_path))
+if __name__ == '__main__':
 
-params_jpm,params_bci,exp_data = load_data(pkl_path,param_jpm_path,param_bci_path)
+    # define the parameters
+    tester_number = 12
+    V_snr = 'high'
+    A_snr = 'low'
+    snr = 'asynch'  # 'synch'
+    sample_size_unit = 25
+    N_experiment = 1
 
-# get the parameters for chosen tester
-params_jpm_dict,params_bci_dict = load_paramters(params_jpm,params_bci,tester_number)
-
-# generating samples (1 trail)
-# data_sample = generate_samples(params_jpm_dict,sample_size_unit,model='JPM')
-data_sample = generate_samples(params_bci_dict,sample_size_unit,model='BCI')
-print(data_sample)
-
-# visualize the samples in single/double stimuli
-fig_single_stim,axs_single_stim,fig_double_stim,axs_double_stim = sample_visualization(params_jpm_dict,params_bci_dict,data_sample,sample_data_type = 'BCI')
-
-# fit the sample with JPM and BCI model
-N_trails = 5
-jpm_neg_log_sum,params_jpm_newfitted = fit_model(tester_number,data_sample, N_trails,model = 'JPM', implementation='full',preprocess=True)
-bci_neg_log_sum,params_bci_newfitted = fit_model(tester_number,data_sample, N_trails,model = 'BCI', implementation='full',preprocess=True)
-print('jpm_neg_log_sum:{:.4f}'.format(jpm_neg_log_sum))
-print('bci_neg_log_sum:{:.4f}'.format(bci_neg_log_sum))
+    if V_snr == 'high' and A_snr =='high': fusion_snr_type = 0
+    elif V_snr == 'mid' and A_snr =='high':fusion_snr_type = 1
+    elif V_snr == 'low' and A_snr =='high':fusion_snr_type = 2
+    elif V_snr == 'high' and A_snr =='mid':fusion_snr_type = 3
+    elif V_snr == 'high' and A_snr =='low':fusion_snr_type = 4
+    else: raise Exception('fusion snr not implemented.')
 
 
+    # load in the data
+    param_bci_path = '../fitted_params/fitted_params_bci_full_4.npy'
+    param_jpm_path = '../fitted_params/fitted_params_jpm_full_4.npy'
+    print('jpm parameters from :{}'.format(param_jpm_path))
+    print('bci parameters from :{}'.format(param_bci_path))
+    pkl_path = '../S2_data/data.pkl'
+    print('experiment data from :{}'.format(pkl_path))
 
-# visualize the fitted curve
-params_jpm_newfitted_dict,params_bci_newfitted_dict = load_paramters(params_jpm_newfitted,params_bci_newfitted,test_index=None)
-fitted_curve_visulization(fig_single_stim,axs_single_stim,fig_double_stim,axs_double_stim,
-                          params_jpm_newfitted_dict,params_bci_newfitted_dict)
+    params_jpm,params_bci,exp_data = load_data(pkl_path,param_jpm_path,param_bci_path)
 
-print('new fitted JPM parameters:{}'.format(params_jpm_newfitted))
-print('new fitted BCI parameters:{}'.format(params_bci_newfitted))
+    # get the parameters for chosen tester
+    params_jpm_dict,params_bci_dict = load_paramters(params_jpm,params_bci,tester_number)
+
+    # file for store the result
+    result_path = '../results/bci_sample_100_'+str(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))+'.txt'
+    f = open(result_path, 'a')
+    f.write('PARAMETERS\ntester_number:{},V_snr:{},A_snr:{},snr:{},sample_size_unit:{},\
+            N_experiment:{},param_bci_path:{},param_jpm_path:{},pkl_path:{}\n'.format(tester_number,V_snr,A_snr,snr,
+                                        sample_size_unit,N_experiment,param_bci_path,param_jpm_path,pkl_path))
+    f.close()
+
+    for i_exp in range(N_experiment):
+        # generating samples (1 trail)
+        # data_sample = generate_samples(params_jpm_dict,sample_size_unit,model='JPM')
+        data_sample = generate_samples(params_bci_dict,sample_size_unit,model='BCI')
+        print(data_sample)
+
+        # visualize the samples in single/double stimuli
+        # fig_single_stim,axs_single_stim,fig_double_stim,axs_double_stim = sample_visualization(params_jpm_dict,params_bci_dict,data_sample,sample_data_type = 'BCI')
+
+        # fit the sample with JPM and BCI model
+        N_trails = 1
+        jpm_neg_log_sum,params_jpm_newfitted = fit_model(tester_number,data_sample, N_trails,model = 'JPM', implementation='full',preprocess=True)
+        bci_neg_log_sum,params_bci_newfitted = fit_model(tester_number,data_sample, N_trails,model = 'BCI', implementation='full',preprocess=True)
+        print('jpm_neg_log_sum:{:.4f}'.format(jpm_neg_log_sum))
+        print('bci_neg_log_sum:{:.4f}'.format(bci_neg_log_sum))
+
+        print('new fitted JPM parameters:{}'.format(params_jpm_newfitted))
+        print('new fitted BCI parameters:{}'.format(params_bci_newfitted))
+
+        # visualize the fitted curve
+        params_jpm_newfitted_dict,params_bci_newfitted_dict = load_paramters(params_jpm_newfitted,params_bci_newfitted,test_index=None)
+        # fitted_curve_visulization(fig_single_stim,axs_single_stim,fig_double_stim,axs_double_stim,
+        #                           params_jpm_newfitted_dict,params_bci_newfitted_dict)
+
+        f = open(result_path, 'a')
+        f.write('{}\tJPM:{},BCI:{}.\n'.format(i_exp,jpm_neg_log_sum,bci_neg_log_sum))
+        f.close()

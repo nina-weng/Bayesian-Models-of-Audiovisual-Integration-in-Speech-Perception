@@ -505,7 +505,7 @@ def parameter_prepocess( x0,model, implementation,preprocess=False):
                                                                         sigs]  # np.exp(np.abs(sig))
         # intervals/boundaries
         softmaxBounds = softmax([c])
-        c = 6 * (np.cumsum(softmaxBounds) - 0.5)
+        c = high_b*2 * (np.cumsum(softmaxBounds) - 0.5)
 
     if model == 'JPM':
         new_x0 = np.array([sigma_0_s, sigma_0_a,mu_vg, mu_vb, mu_ag, mu_ab,
@@ -605,7 +605,7 @@ def neg_log_jpm_for1tester(x0, data_sample, model, implementation, preprocess = 
 
 
     res = res_ab + res_ag + res_vb + res_vg + \
-          5*res_avfus_a + res_avg_a + res_avb_a
+          res_avfus_a + res_avg_a + res_avb_a
 
     # set the regularization term as the penalty on big sigmas
     # Regularization method 1
@@ -666,7 +666,7 @@ def neg_log_bci_for1tester(x0, data_sample, model, implementation, preprocess = 
                                         sigma_0=np.inf)
     #     print('AVFus,mus:{}'.format(mus))
     #     print('AVFus,sigmas:{}'.format(sigmas))
-    res_avfus_a = log_max_likelihood_bci(data_sample['AVG']['counts'].reshape(1,-1),
+    res_avfus_a = log_max_likelihood_bci(data_sample['AVFus']['counts'].reshape(1,-1),
                                          [mus_pc1[snr_type]], [sigmas_pc1[snr_type]],
                                          [mus_pc2[snr_type]], [sigmas_pc2[snr_type]], c, p_a)
 
@@ -689,7 +689,7 @@ def neg_log_bci_for1tester(x0, data_sample, model, implementation, preprocess = 
                                        [mus_pc2[snr_type]], [sigmas_pc2[snr_type]], c, p_a)
 
     res = res_ab + res_ag + res_vb + res_vg + \
-          5*res_avfus_a + res_avg_a + res_avb_a
+          res_avfus_a + res_avg_a + res_avb_a
 
     # set the regularization term as the penalty on big sigmas
     # Regularization method 1
@@ -741,7 +741,7 @@ def parameter_prepocess_9cates(x0,model, implementation,preprocess=False):
                                                                         sigs]  # np.exp(np.abs(sig))
         # intervals/boundaries
         softmaxBounds = softmax([c])
-        c = 6 * (np.cumsum(softmaxBounds) - 0.5)
+        c = high_b*2  * (np.cumsum(softmaxBounds) - 0.5)
 
     if model == 'JPM':
         new_x0 = np.array([sigma_0_s, sigma_0_a,mu_vg, mu_vb, mu_ag, mu_ab,
