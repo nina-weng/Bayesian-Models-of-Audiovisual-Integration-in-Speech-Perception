@@ -351,8 +351,8 @@ def fitted_curve_visulization(fig_single_stim,axs_single_stim,fig_double_stim,ax
         axs_single_stim[i].set_title('single stimuli: {}'.format(single_keys[i]))
 
         # fitted boundaries:
-        boundaries_jpm = params_jpm_dict[:-8]
-        boundaries_bci = params_bci_dict[:-8]
+        boundaries_jpm = params_jpm_dict['c']
+        boundaries_bci = params_bci_dict['c']
         ymin=0.35
         ymax=0.5
         for j in range(8):
@@ -407,8 +407,8 @@ def fitted_curve_visulization(fig_single_stim,axs_single_stim,fig_double_stim,ax
         axs_double_stim[i].set_title('double stimuli: {}'.format(doule_keys[i]))
 
         # fitted boundaries:
-        boundaries_jpm = params_jpm_dict[:-8]
-        boundaries_bci = params_bci_dict[:-8]
+        boundaries_jpm = params_jpm_dict['c']
+        boundaries_bci = params_bci_dict['c']
         ymin = 0.35
         ymax = 0.5
         for j in range(8):
