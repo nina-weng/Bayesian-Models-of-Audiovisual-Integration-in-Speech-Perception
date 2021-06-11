@@ -469,7 +469,7 @@ if __name__ == '__main__':
         print(data_sample)
 
         # visualize the samples in single/double stimuli
-        # fig_single_stim,axs_single_stim,fig_double_stim,axs_double_stim = sample_visualization(params_jpm_dict,params_bci_dict,data_sample,sample_data_type = 'BCI')
+        fig_single_stim,axs_single_stim,fig_double_stim,axs_double_stim = sample_visualization(params_jpm_dict,params_bci_dict,data_sample,sample_data_type = 'BCI')
 
         # fit the sample with JPM and BCI model
         N_trails = 1
@@ -483,8 +483,8 @@ if __name__ == '__main__':
 
         # visualize the fitted curve
         params_jpm_newfitted_dict,params_bci_newfitted_dict = load_paramters(params_jpm_newfitted,params_bci_newfitted,test_index=None)
-        # fitted_curve_visulization(fig_single_stim,axs_single_stim,fig_double_stim,axs_double_stim,
-        #                           params_jpm_newfitted_dict,params_bci_newfitted_dict)
+        fitted_curve_visulization(fig_single_stim,axs_single_stim,fig_double_stim,axs_double_stim,
+                                  params_jpm_newfitted_dict,params_bci_newfitted_dict)
 
         f = open(result_path, 'a')
         f.write('{}\tJPM:{},BCI:{}.\n'.format(i_exp,jpm_neg_log_sum,bci_neg_log_sum))
