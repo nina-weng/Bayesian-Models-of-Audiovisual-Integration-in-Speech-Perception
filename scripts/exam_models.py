@@ -472,7 +472,7 @@ if __name__ == '__main__':
         fig_single_stim,axs_single_stim,fig_double_stim,axs_double_stim = sample_visualization(params_jpm_dict,params_bci_dict,data_sample,sample_data_type = 'BCI')
 
         # fit the sample with JPM and BCI model
-        N_trails = 1
+        N_trails = 5
         jpm_neg_log_sum,params_jpm_newfitted = fit_model(tester_number,data_sample, N_trails,model = 'JPM', implementation='full',preprocess=True)
         bci_neg_log_sum,params_bci_newfitted = fit_model(tester_number,data_sample, N_trails,model = 'BCI', implementation='full',preprocess=True)
         print('jpm_neg_log_sum:{:.4f}'.format(jpm_neg_log_sum))
