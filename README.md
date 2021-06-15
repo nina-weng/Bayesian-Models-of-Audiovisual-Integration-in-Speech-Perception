@@ -46,3 +46,8 @@ Steps for this Phase:
 
 
 
+## Things need to get done (updated on 6.11)
+
+1. Two ways for examination. A) as what we did this week. B) test the roc (roc also could be used for testing other distributions) .   
+2. Try with only neg log for fusion. 
+3. Increase or decrease the sample size unit and see what is the threshold for distinguish the two models
