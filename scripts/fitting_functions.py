@@ -541,7 +541,7 @@ def parameter_prepocess( x0,model, implementation,preprocess=False):
 # print(get_av(1,0.5,1.2,3,np.inf))
 
 
-def neg_log_jpm_for1tester(x0, data_sample, model, implementation, preprocess = False, coef_lambda = LAMBDA):
+def neg_log_jpm_for1tester(x0, data_sample, model, implementation, preprocess = False, isTrain = True, coef_lambda = LAMBDA):
 
 
     sigma_vh_raw, sigma_vm_raw, sigma_vl_raw, sigma_ah_raw, sigma_am_raw, sigma_al_raw = x0[6:12]
@@ -618,10 +618,13 @@ def neg_log_jpm_for1tester(x0, data_sample, model, implementation, preprocess = 
 
     whole_res = -res + regularization_term
 
-    return whole_res
+    if isTrain:
+        return whole_res
+    else:
+        return -res_avfus_a, -res, whole_res
 
 
-def neg_log_bci_for1tester(x0, data_sample, model, implementation, preprocess = False, coef_lambda = LAMBDA):
+def neg_log_bci_for1tester(x0, data_sample, model, implementation, preprocess = False, isTrain = True, coef_lambda = LAMBDA):
 
     sigma_vh_raw, sigma_vm_raw, sigma_vl_raw, sigma_ah_raw, sigma_am_raw, sigma_al_raw = x0[6:12]
     preprocess_x0 = parameter_prepocess_9cates(x0, model, implementation, preprocess)
@@ -702,8 +705,10 @@ def neg_log_bci_for1tester(x0, data_sample, model, implementation, preprocess = 
 
     whole_res = -res + regularization_term
 
-    return whole_res
-
+    if isTrain:
+        return whole_res
+    else:
+        return -res_avfus_a, -res, whole_res
 
 def parameter_prepocess_9cates(x0,model, implementation,preprocess=False):
     # get the parameter out from x0
@@ -746,10 +751,16 @@ def parameter_prepocess_9cates(x0,model, implementation,preprocess=False):
     if model == 'JPM':
         new_x0 = np.array([sigma_0_s, sigma_0_a,mu_vg, mu_vb, mu_ag, mu_ab,
             sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al])
-        new_x0 = np.append(new_x0,c[:-1])
+        if preprocess:
+            new_x0 = np.append(new_x0,c[:-1])
+        else:
+            new_x0 = np.append(new_x0, c)
     elif model == 'BCI':
         new_x0 = np.array([p_s,p_a, mu_vg, mu_vb, mu_ag, mu_ab,
                            sigma_vh, sigma_vm, sigma_vl, sigma_ah, sigma_am, sigma_al])
-        new_x0 = np.append(new_x0, c[:-1])
+        if preprocess:
+            new_x0 = np.append(new_x0,c[:-1])
+        else:
+            new_x0 = np.append(new_x0, c)
 
     return new_x0

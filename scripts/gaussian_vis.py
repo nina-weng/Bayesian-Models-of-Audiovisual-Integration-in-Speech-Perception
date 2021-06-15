@@ -12,11 +12,16 @@ TEXT_Y = [0.35,0.4,0.48]
 
 
 
+# with condition Vhi-Alo + asynch
+#
+# 1,3,5,10,12 - DA responses ~ 0%
+# 2 - mid-similar, sigma for P(C=2) is large
+# 0,1,3,10 - mid-similar, asymmetric
+# 4,8,9,11,13,14,15 - similar with JPM
+# 5,12 - two-peak, asymmetric
+# 6,7 - one-peak, asymmetric
 
-# 5,6,7,12 - more obvious 2-peak (dissimilar)
-# 1,3,10,12 - DA prob ~ 0
-# 0,2,4,8,9,11,13,14,15 - quite similar with the other model
-test_index = 12
+test_index = 1
 print('tester index:{}'.format(test_index))
 
 fitted_param_path_bci = '../fitted_params/fitted_params_bci_full_4.npy'

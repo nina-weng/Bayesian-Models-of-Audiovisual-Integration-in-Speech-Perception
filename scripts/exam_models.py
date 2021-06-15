@@ -100,7 +100,7 @@ def sample_mixture_guassion(mu_1,mu_2,sigma_1,sigma_2,p,sample_size):
     return sample
 
 
-def generate_samples(params_dict,sample_size_unit,model='JPM'):
+def generate_samples(params_dict,sample_size_unit,A_snr='low',V_snr='high',snr='asynch', fusion_snr_type=4, model='JPM'):
     sample_data ={}
     keys = ['AB' ,'AG' ,'VB' ,'VG' ,'AVB' ,'AVG' ,'AVFus']
     for key in keys:
@@ -199,21 +199,23 @@ def fit_model(tester_index,exp_data, N_trails,model = 'JPM', implementation='ful
     for i in tqdm(range(N_trails)):
         # get free parameters first
         x0 = np.random.rand(num_parameters)
-        res = minimize(neg_log_function, x0, args=(exp_data, model, implementation, preprocess), method='BFGS',
+        res = minimize(neg_log_function, x0, args=(exp_data, model, implementation, preprocess,True), method='BFGS',
                        tol=1e-4)  # Nelder-Mead,BFGS,L-BFGS-B
         params_stored[i, :] = parameter_prepocess_9cates(res.x, model=model, implementation=implementation,
                                                      preprocess=preprocess)
 
         # record the neg-log value (for choosing the lowest one)
-        neg_log = neg_log_function(res.x, exp_data, model, implementation, preprocess)
+        neg_log = neg_log_function(res.x, exp_data, model, implementation, preprocess,isTrain=True)
         neg_log_record[i] = neg_log
 
 
         print('neg_log for {}th trail & {} tester: {}'.format(i, tester_index, neg_log))
 
     min_index = np.nanargmin(neg_log_record)
-    print('min neg_log :{}\ncorresponding index: {}'.format(np.nanmin(neg_log_record), min_index))
-    return np.nanmin(neg_log_record),params_stored[min_index]
+    print('min neg_log :{}\tcorresponding index: {}'.format(np.nanmin(neg_log_record), min_index))
+    avfus_neg_log, whole_neg_log, total_neg_log = neg_log_function(params_stored[min_index,:], exp_data, model, implementation, preprocess=False,
+                                                                   isTrain=False)
+    return avfus_neg_log, whole_neg_log, total_neg_log,params_stored[min_index]
 
 
 def sample_visualization(params_jpm_dict,params_bci_dict,sample_data, sample_data_type):
@@ -431,6 +433,7 @@ if __name__ == '__main__':
     A_snr = 'low'
     snr = 'asynch'  # 'synch'
     sample_size_unit = 25
+    sample_type = 'bci'
     N_experiment = 1
 
     if V_snr == 'high' and A_snr =='high': fusion_snr_type = 0
@@ -455,7 +458,7 @@ if __name__ == '__main__':
     params_jpm_dict,params_bci_dict = load_paramters(params_jpm,params_bci,tester_number)
 
     # file for store the result
-    result_path = '../results/bci_sample_100_'+str(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))+'.txt'
+    result_path = '../results/'+str(tester_number)+'_'+sample_type+'_sample_'+str(N_experiment)+'_'+str(datetime.datetime.now().strftime('%Y%m%d%H%M%S'))+'.txt'
     f = open(result_path, 'a')
     f.write('PARAMETERS\ntester_number:{},V_snr:{},A_snr:{},snr:{},sample_size_unit:{},\
             N_experiment:{},param_bci_path:{},param_jpm_path:{},pkl_path:{}\n'.format(tester_number,V_snr,A_snr,snr,
@@ -464,19 +467,24 @@ if __name__ == '__main__':
 
     for i_exp in range(N_experiment):
         # generating samples (1 trail)
-        # data_sample = generate_samples(params_jpm_dict,sample_size_unit,model='JPM')
-        data_sample = generate_samples(params_bci_dict,sample_size_unit,model='BCI')
-        print(data_sample)
+        if sample_type == 'jpm':
+            data_sample = generate_samples(params_jpm_dict,sample_size_unit,A_snr=A_snr, V_snr=V_snr,snr=snr,\
+                                       fusion_snr_type=fusion_snr_type, model='JPM')
+        elif sample_type =='bci':
+            data_sample = generate_samples(params_bci_dict,sample_size_unit,A_snr=A_snr, V_snr=V_snr,snr=snr,\
+                                       fusion_snr_type=fusion_snr_type,model='BCI')
+        else: raise Exception('Sample type error.')
+        # print(data_sample)
 
         # visualize the samples in single/double stimuli
         fig_single_stim,axs_single_stim,fig_double_stim,axs_double_stim = sample_visualization(params_jpm_dict,params_bci_dict,data_sample,sample_data_type = 'BCI')
 
         # fit the sample with JPM and BCI model
-        N_trails = 5
-        jpm_neg_log_sum,params_jpm_newfitted = fit_model(tester_number,data_sample, N_trails,model = 'JPM', implementation='full',preprocess=True)
-        bci_neg_log_sum,params_bci_newfitted = fit_model(tester_number,data_sample, N_trails,model = 'BCI', implementation='full',preprocess=True)
-        print('jpm_neg_log_sum:{:.4f}'.format(jpm_neg_log_sum))
-        print('bci_neg_log_sum:{:.4f}'.format(bci_neg_log_sum))
+        N_trails = 2
+        jpm_avfus_neg_log, jpm_whole_neg_log, jpm_total_neg_log,params_jpm_newfitted = fit_model(tester_number,data_sample, N_trails,model = 'JPM', implementation='full',preprocess=True)
+        bci_avfus_neg_log, bci_whole_neg_log, bci_total_neg_log,params_bci_newfitted = fit_model(tester_number,data_sample, N_trails,model = 'BCI', implementation='full',preprocess=True)
+        print('jpm_neg_log_sum:{:.4f}'.format(jpm_total_neg_log))
+        print('bci_neg_log_sum:{:.4f}'.format(bci_total_neg_log))
 
         print('new fitted JPM parameters:{}'.format(params_jpm_newfitted))
         print('new fitted BCI parameters:{}'.format(params_bci_newfitted))
@@ -487,5 +495,6 @@ if __name__ == '__main__':
                                   params_jpm_newfitted_dict,params_bci_newfitted_dict)
 
         f = open(result_path, 'a')
-        f.write('{}\tJPM:{},BCI:{}.\n'.format(i_exp,jpm_neg_log_sum,bci_neg_log_sum))
+        f.write('{}\tJPM:{},{},{};BCI:{},{},{}\n'.format(i_exp,jpm_avfus_neg_log,jpm_whole_neg_log,jpm_total_neg_log,
+                                                         bci_avfus_neg_log, bci_whole_neg_log, bci_total_neg_log))
         f.close()
