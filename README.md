@@ -49,5 +49,13 @@ Steps for this Phase:
 ## Things need to get done (updated on 6.11)
 
 1. Two ways for examination. A) as what we did this week. B) test the roc (roc also could be used for testing other distributions) .   
+   1. the examination on fitting performance
+      * exam on 16(?) tester {at least on 5,6,7,12, maybe also 0,1,2,3,10}
+      * do it for 100 experiment
+      * 
+   2. ROC
+      * not like the A method, we don't need to fit the model again (from what I understand). Instead, we only sampled from the distribution, and then compute the proportions and take the inversed value for Gaussian coordinate 
+      * This is for examining whether the distribution is Gaussian or not
+      * question: what is the noise
 2. Try with only neg log for fusion. 
 3. Increase or decrease the sample size unit and see what is the threshold for distinguish the two models
