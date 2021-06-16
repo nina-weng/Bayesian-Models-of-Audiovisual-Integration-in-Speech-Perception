@@ -213,10 +213,9 @@ def log_max_likelihood_bci(counts, mu_pc1, sigma_pc1, mu_pc2, sigma_pc2,c, p):
     N = np.sum(x, axis=1)
 
     # log_N_fact = np.log(factorial(N))
-    N_list = np.arange(1, N + 1)
-    log_N_fact = np.sum(np.log(N_list))
+    log_N_fact = log_factorial(N)
 
-    sum_log_fact = np.sum(np.log(factorial(x)), axis=1)
+    sum_log_fact = np.sum(log_factorial(x))
 
     log_res_prob = np.log(res_prob)
     # log_res_prob[np.isinf(log_res_prob)] = -1e6

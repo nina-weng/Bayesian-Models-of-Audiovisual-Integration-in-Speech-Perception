@@ -1,3 +1,0 @@
-PARAMETERS
-tester_number:12,V_snr:high,A_snr:low,snr:asynch,sample_size_unit:25,            N_experiment:1,param_bci_path:../fitted_params/fitted_params_bci_full_4.npy,param_jpm_path:../fitted_params/fitted_params_jpm_full_4.npy,pkl_path:../S2_data/data.pkl
-0	JPM:121.23429442007931,BCI:113.18022597144163.

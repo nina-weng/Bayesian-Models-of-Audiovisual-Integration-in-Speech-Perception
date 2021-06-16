@@ -3,11 +3,39 @@
   <component name="ChangeListManager">
     <list default="true" id="779c57b2-3a3e-4c32-88ed-ab5b8cf013f8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/exam_model_ROC.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/exam_model_ROC.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/exam_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/exam_models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/12_bci_sample_100_20210615123254.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/12_bci_sample_1_20210615122516.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/12_jpm_sample_100_20210615123318.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/5_bci_sample_100_20210615103659.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/5_jpm_sample_100_20210615103753.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/6_bci_sample_100_20210615165700.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/6_bci_sample_1_20210616145417.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/6_bci_sample_1_20210616145602.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/6_bci_sample_1_20210616151252.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/6_bci_sample_1_20210616151314.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/6_bci_sample_1_20210616152521.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/6_bci_sample_1_20210616152837.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/6_bci_sample_1_20210616153111.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/6_bci_sample_1_20210616153211.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/6_bci_sample_1_20210616153449.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/6_bci_sample_1_20210616154048.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/6_jpm_sample_100_20210615165639.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/7_bci_sample_100_20210615165715.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/7_jpm_sample_100_20210615165732.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/bci_sample_100_20210611004730.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/bci_sample_100_20210611005532.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/bci_sample_100_20210611010542.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/bci_sample_100_20210611011216.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/bci_sample_100_20210611011448.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/bci_sample_100_20210611011505.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/bci_sample_100_20210611011719.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/bci_sample_100_20210611102949.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/bci_sample_100_20210611104058.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/bci_sample_100_20210611123142.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/jpm_sample_100_20210611082039.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/jpm_sample_100_20210611103128.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/jpm_sample_100_20210611123741.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/fitting_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/fitting_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/gaussian_vis.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/gaussian_vis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/sample_fitted_result_analyse.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/sample_fitted_result_analyse.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,7 +50,7 @@
     <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$exam_model_ROC.coverage" NAME="exam_model_ROC Coverage Results" MODIFIED="1623825854833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$fitting_functions.coverage" NAME="fitting_functions Coverage Results" MODIFIED="1623850234722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$gaussian_vis.coverage" NAME="gaussian_vis Coverage Results" MODIFIED="1623825539581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$exam_models.coverage" NAME="exam_models Coverage Results" MODIFIED="1623850845614" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$exam_models.coverage" NAME="exam_models Coverage Results" MODIFIED="1623851036725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$model_results_validation.coverage" NAME="model_results_validation Coverage Results" MODIFIED="1623091701020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$result_plotting.coverage" NAME="result_plotting Coverage Results" MODIFIED="1623093202040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$main.coverage" NAME="main Coverage Results" MODIFIED="1620819937901" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
@@ -33,8 +61,8 @@
       <file leaf-file-name="fitting_functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/fitting_functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="182">
+              <caret line="213" lean-forward="true" selection-start-line="213" selection-end-line="213" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#6020#6959#0" />
@@ -49,8 +77,8 @@
       <file leaf-file-name="exam_models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/exam_models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="498" column="29" lean-forward="true" selection-start-line="498" selection-start-column="29" selection-end-line="498" selection-end-column="29" />
+            <state relative-caret-position="212">
+              <caret line="195" column="37" selection-start-line="195" selection-start-column="37" selection-end-line="195" selection-end-column="37" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#9673#15459#0" />
@@ -141,6 +169,11 @@
             <path>
               <item name="Bayesian-Models-of-Audiovisual-Integration-in-Speech-Perception" type="b2602c69:ProjectViewProjectNode" />
               <item name="Bayesian-Models-of-Audiovisual-Integration-in-Speech-Perception" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Bayesian-Models-of-Audiovisual-Integration-in-Speech-Perception" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Bayesian-Models-of-Audiovisual-Integration-in-Speech-Perception" type="462c0819:PsiDirectoryNode" />
+              <item name="results" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Bayesian-Models-of-Audiovisual-Integration-in-Speech-Perception" type="b2602c69:ProjectViewProjectNode" />
@@ -311,10 +344,10 @@
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.34950072" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32952926" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19168901" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19168901" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info active="true" anchor="right" id="SciView" order="3" visible="true" weight="0.37064344" />
+      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.37064344" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="8" weight="0.32952926" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -359,33 +392,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scripts/fitting_functions.py</url>
-          <line>581</line>
+          <line>580</line>
           <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scripts/fitting_functions.py</url>
-          <line>624</line>
+          <line>623</line>
           <option name="timeStamp" value="87" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scripts/fitting_functions.py</url>
-          <line>618</line>
+          <line>617</line>
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scripts/fitting_functions.py</url>
-          <line>236</line>
+          <line>235</line>
           <option name="timeStamp" value="89" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/scripts/fitting_functions.py</url>
-          <line>172</line>
-          <option name="timeStamp" value="93" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/scripts/fitting_functions.py</url>
-          <line>174</line>
-          <option name="timeStamp" value="94" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scripts/fitting_functions.py</url>
@@ -397,23 +420,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/model_results_validation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/gaussian_vis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-          <folding>
-            <element signature="e#1#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/sample_fitted_result_analyse.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="972">
@@ -680,13 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/results/bci_sample_100_20210611005532.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/numpy/lib/histograms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -736,13 +735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/results/12_bci_sample_1_20210615122516.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/exam_model_ROC.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
@@ -789,8 +781,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/fitting_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="182">
+          <caret line="213" lean-forward="true" selection-start-line="213" selection-end-line="213" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <element signature="e#6020#6959#0" />
@@ -801,10 +793,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/results/5_bci_sample_100_20210615103659.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/5_jpm_sample_100_20210615103753.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/12_bci_sample_1_20210615122516.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/12_bci_sample_100_20210615123254.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/12_jpm_sample_100_20210615123318.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/bci_sample_100_20210611005532.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/12_jpm_sample_100_20210615123521.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/12_bci_sample_100_20210615123555.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/exam_models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="498" column="29" lean-forward="true" selection-start-line="498" selection-start-column="29" selection-end-line="498" selection-end-column="29" />
+        <state relative-caret-position="212">
+          <caret line="195" column="37" selection-start-line="195" selection-start-column="37" selection-end-line="195" selection-end-column="37" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <element signature="e#9673#15459#0" />
