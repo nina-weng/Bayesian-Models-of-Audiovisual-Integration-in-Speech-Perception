@@ -3,6 +3,8 @@ from scipy.stats import norm
 
 def plot_ROC(p_fa,p_hit,title_info):
     plt.figure(figsize = (6,6))
+    p_fa = np.concatenate([[0],p_fa])
+    p_hit = np.concatenate([[0],p_hit])
     plt.plot(p_fa,p_hit,marker = 'o',markerfacecolor= 'red',color='k',markersize=10)
     xs=np.linspace(0,1,100)
     plt.plot(xs,xs,color='grey',alpha=0.5)
@@ -39,7 +41,7 @@ def plot_ROC_gaussian_coordinates(p_fa,p_hit,title_info):
 
 if __name__ == '__main__':
     # define the parameters
-    tester_number = 12
+    tester_number = 5
     V_snr = 'high'
     A_snr = 'low'
     snr = 'asynch'  # 'synch'

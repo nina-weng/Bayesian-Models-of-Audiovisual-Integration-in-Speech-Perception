@@ -428,7 +428,7 @@ def fitted_curve_visulization(fig_single_stim,axs_single_stim,fig_double_stim,ax
 if __name__ == '__main__':
 
     # define the parameters
-    tester_number = 12
+    tester_number = 6
     V_snr = 'high'
     A_snr = 'low'
     snr = 'asynch'  # 'synch'
@@ -474,7 +474,7 @@ if __name__ == '__main__':
             data_sample = generate_samples(params_bci_dict,sample_size_unit,A_snr=A_snr, V_snr=V_snr,snr=snr,\
                                        fusion_snr_type=fusion_snr_type,model='BCI')
         else: raise Exception('Sample type error.')
-        # print(data_sample)
+        print(data_sample)
 
         # visualize the samples in single/double stimuli
         fig_single_stim,axs_single_stim,fig_double_stim,axs_double_stim = sample_visualization(params_jpm_dict,params_bci_dict,data_sample,sample_data_type = 'BCI')

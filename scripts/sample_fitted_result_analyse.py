@@ -33,11 +33,11 @@ def load_result_data_v2(txt_path):
             if idx == 0 or idx == 1:
                 continue
             contents = line.split('\t')[1].split(';')
-            jpm_s = [float(s) for s in contents[0].split(':')[1].split(',')]
-            bci_s = [float(s) for s in contents[1].split(':')[1].split(',')]
+            jpm_s = np.array([float(s) for s in contents[0].split(':')[1].split(',')])
+            bci_s = np.array([float(s) for s in contents[1].split(':')[1].split(',')])
             # print(jpm_s,bci_s)
 
-            if jpm_s == np.inf or bci_s == np.inf:
+            if np.isinf(jpm_s).any() or np.isinf(bci_s).any():
                 inf_count += 1
                 continue
 
@@ -45,15 +45,26 @@ def load_result_data_v2(txt_path):
             bci_scores.append(bci_s)
     return np.array(jpm_scores),np.array(bci_scores),inf_count
 
+#5_bci_sample_100_20210615165538
+#5_jpm_sample_100_20210615165600
+#6_bci_sample_100_20210615165700
+#6_jpm_sample_100_20210615165639
+#7_bci_sample_100_20210615165715
+#7_jpm_sample_100_20210615165732
+#12_bci_sample_100_20210615123555
+#12_jpm_sample_100_20210615123521
 
 
-bci_sample_fitted_result_path = '../results/5_bci_sample_100_20210615165538.txt'
-jpm_sample_fitted_result_path = '../results/5_jpm_sample_100_20210615165600.txt'
+
+bci_sample_fitted_result_path = '../results/12_bci_sample_100_20210615123555.txt'
+jpm_sample_fitted_result_path = '../results/12_jpm_sample_100_20210615123521.txt'
 
 
 jpm_scores_bcisample,bci_scores_bcisample,inf_count_bci = load_result_data_v2(bci_sample_fitted_result_path)
 jpm_scores_jpmsample,bci_scores_jpmsample,inf_count_jpm = load_result_data_v2(jpm_sample_fitted_result_path)
 
+print(len(jpm_scores_bcisample),len(bci_scores_bcisample),inf_count_bci)
+print(len(jpm_scores_jpmsample),len(bci_scores_jpmsample),inf_count_jpm)
 # fig,axes = plt.subplots(2, 1, figsize=(8, 8))
 # bins = 20
 # axes[0].hist(jpm_scores_bcisample,bins=bins,color='mediumorchid',alpha=0.5,label='jpm score')
@@ -67,9 +78,13 @@ jpm_scores_jpmsample,bci_scores_jpmsample,inf_count_jpm = load_result_data_v2(jp
 # fig.show()
 
 plt.figure(figsize=(6,6))
-index = 1
+index = 0
 percentage_diff_score_bci = (np.array(jpm_scores_bcisample[:,index])-np.array(bci_scores_bcisample[:,index]))/np.array(bci_scores_bcisample[:,index])
-percentage_diff_score_jpm = (np.array(jpm_scores_jpmsample[:,index])-np.array(bci_scores_jpmsample[:,index]))/np.array(bci_scores_bcisample[:,index])
+percentage_diff_score_jpm = (np.array(jpm_scores_jpmsample[:,index])-np.array(bci_scores_jpmsample[:,index]))/np.array(bci_scores_jpmsample[:,index])
+
+diff_score_bci = np.array(jpm_scores_bcisample[:,index])-np.array(bci_scores_bcisample[:,index])
+diff_score_jpm = np.array(jpm_scores_jpmsample[:,index])-np.array(bci_scores_jpmsample[:,index])
+
 
 plt.hist(percentage_diff_score_bci,bins=20,color='limegreen',alpha=0.5,label='BCI sample' )
 plt.hist(percentage_diff_score_jpm,bins=20,color='mediumorchid',alpha=0.5,label='JPM sample' )

@@ -21,7 +21,7 @@ TEXT_Y = [0.35,0.4,0.48]
 # 5,12 - two-peak, asymmetric
 # 6,7 - one-peak, asymmetric
 
-test_index = 12
+test_index = 5
 print('tester index:{}'.format(test_index))
 
 fitted_param_path_bci = '../fitted_params/fitted_params_bci_full_4.npy'

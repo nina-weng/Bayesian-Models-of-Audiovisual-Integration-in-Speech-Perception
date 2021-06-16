@@ -9,6 +9,25 @@ low_b = -3
 LAMBDA = 7
 
 
+def log_factorial(x):
+    '''
+    compute the value of log(x!), to avoid overflow
+    :param x:
+    :return:
+    '''
+    l = len(x.shape)
+    if l == 1:
+        x_list = np.arange(1, x + 1)
+        log_fac = np.sum(np.log(x_list))
+    else:
+        log_fac = []
+        for i in range(x.shape[1]):
+            x_list = np.arange(1, x[0,i] + 1)
+            log_fac.append(np.sum(np.log(x_list)))
+
+    return log_fac
+
+
 def softmax(arr):
     """
     input: arr - type: np.array or list with shape m x n or (m,) - a vector
@@ -149,10 +168,9 @@ def log_max_likelihood_each(counts, mu, sigma, c):
     N = np.sum(x, axis=1)
 
     # log_N_fact = np.log(factorial(N))
-    N_list = np.arange(1,N+1)
-    log_N_fact = np.sum(np.log(N_list))
+    log_N_fact = log_factorial(N)
 
-    sum_log_fact = np.sum(np.log(factorial(x)), axis=1)
+    sum_log_fact = np.sum(log_factorial(x))
 
     log_res_prob = np.log(res_prob)
     # log_res_prob[np.isinf(log_res_prob)] = -1e6
