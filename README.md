@@ -57,5 +57,14 @@ Steps for this Phase:
       * not like the A method, we don't need to fit the model again (from what I understand). Instead, we only sampled from the distribution, and then compute the proportions and take the inversed value for Gaussian coordinate 
       * This is for examining whether the distribution is Gaussian or not
       * question: what is the noise
+      * *updated: error bar
 2. Try with only neg log for fusion. 
 3. Increase or decrease the sample size unit and see what is the threshold for distinguish the two models
+
+(updated on 6.15)
+
+4. statistics on 16 testers 
+
+   for each tester, run one experiment from BCI and JPM samples, and compute the p-value for the hypothesis that one model wins.
+
+   do this for 100 trails.
