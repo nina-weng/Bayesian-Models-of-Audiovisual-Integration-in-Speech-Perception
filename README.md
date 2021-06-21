@@ -58,8 +58,9 @@ Steps for this Phase:
       * This is for examining whether the distribution is Gaussian or not
       * question: what is the noise
       * *updated: error bar
-2. Try with only neg log for fusion. 
-3. Increase or decrease the sample size unit and see what is the threshold for distinguish the two models
+      * *updated: 100 trails with error bar with all 16 testers
+2. Try with only neg log for fusion. (done)
+3. Increase or decrease the sample size unit and see what is the threshold for distinguish the two models 
 
 (updated on 6.15)
 

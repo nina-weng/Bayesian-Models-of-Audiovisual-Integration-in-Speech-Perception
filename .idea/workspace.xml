@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="779c57b2-3a3e-4c32-88ed-ab5b8cf013f8" name="Default" comment="" />
+    <list default="true" id="779c57b2-3a3e-4c32-88ed-ab5b8cf013f8" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/scripts/exam_model_ROC.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/exam_model_ROC.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/sample_fitted_result_analyse.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/sample_fitted_result_analyse.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -10,10 +13,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$sample_fitted_result_analyse.coverage" NAME="sample_fitted_result_analyse Coverage Results" MODIFIED="1623825414940" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$sample_fitted_result_analyse.coverage" NAME="sample_fitted_result_analyse Coverage Results" MODIFIED="1624312015915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$gaussian_heatmap.coverage" NAME="gaussian_heatmap Coverage Results" MODIFIED="1620549843091" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$exam_model_ROC.coverage" NAME="exam_model_ROC Coverage Results" MODIFIED="1623825854833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$fitting_functions.coverage" NAME="fitting_functions Coverage Results" MODIFIED="1623850234722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$exam_model_ROC.coverage" NAME="exam_model_ROC Coverage Results" MODIFIED="1624312801292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$gaussian_vis.coverage" NAME="gaussian_vis Coverage Results" MODIFIED="1623825539581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$exam_models.coverage" NAME="exam_models Coverage Results" MODIFIED="1623851036725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/Bayesian_Models_of_Audiovisual_Integration_in_Speech_Perception$model_results_validation.coverage" NAME="model_results_validation Coverage Results" MODIFIED="1623091701020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
@@ -23,46 +26,53 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="fitting_functions.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/fitting_functions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="213" lean-forward="true" selection-start-line="213" selection-end-line="213" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-                <element signature="e#6020#6959#0" />
-                <element signature="e#7079#11935#0" />
-                <element signature="e#12047#17818#0" />
-                <element signature="e#29169#31431#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="exam_models.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scripts/exam_models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1148">
-              <caret line="199" column="35" lean-forward="true" selection-start-line="199" selection-start-column="35" selection-end-line="199" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-                <element signature="e#9673#15459#0" />
-                <element signature="e#15625#20393#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="exam_model_ROC.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="exam_model_ROC.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/exam_model_ROC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+            <state relative-caret-position="-220">
+              <caret line="45" column="17" lean-forward="true" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sample_fitted_result_analyse.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/sample_fitted_result_analyse.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="26" column="34" lean-forward="true" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fitted_vis_sample1.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/results/fitted_vis_sample1.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file leaf-file-name="fitted_vis_sample2.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/results/fitted_vis_sample2.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file leaf-file-name="testerid_12_fitted_score_diff.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/results/testerid_12_fitted_score_diff.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file leaf-file-name="vis_sample1.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/results/vis_sample1.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file leaf-file-name="vis_sample2.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/results/vis_sample2.png">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
     </leaf>
@@ -101,11 +111,11 @@
         <option value="$PROJECT_DIR$/scripts/result_plotting.py" />
         <option value="$PROJECT_DIR$/results/jpm_sample_100_20210611082039.txt" />
         <option value="$PROJECT_DIR$/results/jpm_sample_100_20210611123741.txt" />
-        <option value="$PROJECT_DIR$/scripts/sample_fitted_result_analyse.py" />
         <option value="$PROJECT_DIR$/scripts/gaussian_vis.py" />
-        <option value="$PROJECT_DIR$/scripts/exam_model_ROC.py" />
         <option value="$PROJECT_DIR$/scripts/exam_models.py" />
         <option value="$PROJECT_DIR$/scripts/fitting_functions.py" />
+        <option value="$PROJECT_DIR$/scripts/sample_fitted_result_analyse.py" />
+        <option value="$PROJECT_DIR$/scripts/exam_model_ROC.py" />
       </list>
     </option>
   </component>
@@ -127,7 +137,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -149,6 +158,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -171,7 +181,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.exam_models">
+  <component name="RunManager" selected="Python.exam_model_ROC">
     <configuration name="exam_model_ROC" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Bayesian-Models-of-Audiovisual-Integration-in-Speech-Perception" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -276,11 +286,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.exam_model_ROC" />
+        <item itemvalue="Python.sample_fitted_result_analyse" />
         <item itemvalue="Python.exam_models" />
         <item itemvalue="Python.fitting_functions" />
-        <item itemvalue="Python.exam_model_ROC" />
         <item itemvalue="Python.gaussian_vis" />
-        <item itemvalue="Python.sample_fitted_result_analyse" />
       </list>
     </recent_temporary>
   </component>
@@ -306,17 +316,16 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32952926" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34950072" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.34950072" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32952926" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19168901" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19436997" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info active="true" anchor="right" id="SciView" order="3" visible="true" weight="0.37064344" />
+      <window_info active="true" anchor="right" id="SciView" order="3" visible="true" weight="0.28619304" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="8" weight="0.32952926" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.33238232" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.489301" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -324,6 +333,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32952926" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="8" weight="0.32952926" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -381,72 +391,10 @@
           <option name="timeStamp" value="95" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="97" />
+      <option name="time" value="98" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/exam_model_ROC.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="34" column="14" lean-forward="true" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/fitting_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12474">
-          <caret line="693" column="4" selection-start-line="693" selection-start-column="4" selection-end-line="693" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#6020#6959#0" />
-            <element signature="e#7079#11935#0" />
-            <element signature="e#12047#17818#0" />
-            <element signature="e#29169#31431#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/fitting_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2664">
-          <caret line="148" lean-forward="true" selection-start-line="148" selection-end-line="148" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#6020#6959#0" />
-            <element signature="e#7079#11935#0" />
-            <element signature="e#12047#17818#0" />
-            <element signature="e#29169#31431#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/result_plotting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="42" column="31" lean-forward="true" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -460,10 +408,6 @@
           <caret line="164" column="36" selection-start-line="164" selection-start-column="36" selection-end-line="164" selection-end-column="36" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#6020#6959#0" />
-            <element signature="e#7079#11935#0" />
-            <element signature="e#12047#17818#0" />
-            <element signature="e#29169#31431#0" />
           </folding>
         </state>
       </provider>
@@ -495,10 +439,6 @@
           <caret line="206" column="26" selection-start-line="206" selection-start-column="26" selection-end-line="206" selection-end-column="26" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#6020#6959#0" />
-            <element signature="e#7079#11935#0" />
-            <element signature="e#12047#17818#0" />
-            <element signature="e#29169#31431#0" />
           </folding>
         </state>
       </provider>
@@ -543,10 +483,6 @@
           <caret line="206" column="26" lean-forward="true" selection-start-line="206" selection-start-column="26" selection-end-line="206" selection-end-column="26" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#6020#6959#0" />
-            <element signature="e#7079#11935#0" />
-            <element signature="e#12047#17818#0" />
-            <element signature="e#29169#31431#0" />
           </folding>
         </state>
       </provider>
@@ -581,10 +517,6 @@
           <caret line="188" lean-forward="true" selection-start-line="188" selection-end-line="188" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#6020#6959#0" />
-            <element signature="e#7079#11935#0" />
-            <element signature="e#12047#17818#0" />
-            <element signature="e#29169#31431#0" />
           </folding>
         </state>
       </provider>
@@ -634,13 +566,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/results/jpm_sample_100_20210611082039.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/results/jpm_sample_100_20210611082039.txt" />
     <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python37/site-packages/numpy/lib/histograms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -655,13 +581,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/results/jpm_sample_100_20210611123741.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/results/jpm_sample_100_20210611123741.txt" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/matplotlib/artist.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
@@ -690,33 +610,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/exam_model_ROC.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/sample_fitted_result_analyse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="58" column="17" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/gaussian_vis.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-          <folding>
-            <element signature="e#1#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -736,41 +633,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/fitting_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="213" lean-forward="true" selection-start-line="213" selection-end-line="213" />
+        <state relative-caret-position="3780">
+          <caret line="213" selection-start-line="213" selection-end-line="213" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#6020#6959#0" />
-            <element signature="e#7079#11935#0" />
-            <element signature="e#12047#17818#0" />
-            <element signature="e#29169#31431#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/results/5_bci_sample_100_20210615103659.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/results/5_jpm_sample_100_20210615103753.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/results/12_bci_sample_1_20210615122516.txt">
+    <entry file="file://$PROJECT_DIR$/results/12_bci_sample_1_20210615122516.txt" />
+    <entry file="file://$PROJECT_DIR$/results/bci_sample_100_20210611005532.txt" />
+    <entry file="file://$PROJECT_DIR$/scripts/exam_models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/results/12_bci_sample_100_20210615123254.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/results/12_jpm_sample_100_20210615123318.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/results/bci_sample_100_20210611005532.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="50" />
+        <state relative-caret-position="-191">
+          <caret line="180" lean-forward="true" selection-start-line="180" selection-end-line="180" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#9673#15459#0" />
+            <element signature="e#15625#20393#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -780,17 +661,55 @@
     <entry file="file://$PROJECT_DIR$/results/12_bci_sample_100_20210615123555.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/results/6_bci_sample_1_20210616154359.txt">
+    <entry file="file://$PROJECT_DIR$/results/7_jpm_sample_100_20210616161713.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/exam_models.py">
+    <entry file="file://$PROJECT_DIR$/results/7_bci_sample_100_20210616161729.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/6_jpm_sample_100_20210616161656.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/6_bci_sample_100_20210616161601.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/5_jpm_sample_100_20210615165600.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/5_bci_sample_100_20210615165538.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/sample_fitted_result_analyse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1148">
-          <caret line="199" column="35" lean-forward="true" selection-start-line="199" selection-start-column="35" selection-end-line="199" selection-end-column="35" />
+        <state relative-caret-position="468">
+          <caret line="26" column="34" lean-forward="true" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#9673#15459#0" />
-            <element signature="e#15625#20393#0" />
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/fitted_vis_sample1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/fitted_vis_sample2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/testerid_12_fitted_score_diff.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/vis_sample1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/vis_sample2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/exam_model_ROC.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-220">
+          <caret line="45" column="17" lean-forward="true" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>

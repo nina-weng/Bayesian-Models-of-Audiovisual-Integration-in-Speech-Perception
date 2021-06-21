@@ -98,9 +98,9 @@ plt.show()
 
 # confusion matrix
 print('\t\tFitted JPM is better\tFitted BCI is better')
-jpm_better = np.sum(jpm_scores_jpmsample<bci_scores_jpmsample)
+jpm_better = np.sum(jpm_scores_jpmsample[:,index]<bci_scores_jpmsample[:,index])
 bci_better = len(jpm_scores_jpmsample) - jpm_better
 print("JPM sample\t{}\t{}".format(jpm_better,bci_better))
-jpm_better = np.sum(jpm_scores_bcisample<bci_scores_bcisample)
+jpm_better = np.sum(jpm_scores_bcisample[:,index]<bci_scores_bcisample[:,index])
 bci_better = len(jpm_scores_bcisample) - jpm_better
 print("BCI sample\t{}\t{}".format(jpm_better,bci_better))

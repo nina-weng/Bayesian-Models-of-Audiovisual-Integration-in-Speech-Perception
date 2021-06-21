@@ -41,7 +41,7 @@ def plot_ROC_gaussian_coordinates(p_fa,p_hit,title_info):
 
 if __name__ == '__main__':
     # define the parameters
-    tester_number = 5
+    tester_number = 1
     V_snr = 'high'
     A_snr = 'low'
     snr = 'asynch'  # 'synch'
