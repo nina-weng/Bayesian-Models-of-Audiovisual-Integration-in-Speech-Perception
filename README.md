@@ -69,3 +69,13 @@ Steps for this Phase:
    for each tester, run one experiment from BCI and JPM samples, and compute the p-value for the hypothesis that one model wins.
 
    do this for 100 trails.
+
+{plan for 6.22
+
+* to-do-list 4. statistics, about how to define hypothesis and how to get the p-value 
+
+* ROC 100 trails + error bar
+
+* write the report Phase 1& 2, overleaf}
+
+  
