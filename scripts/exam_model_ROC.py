@@ -84,6 +84,7 @@ if __name__ == '__main__':
     subplot_col = 4
     fig,axes = plt.subplots(subplot_row,subplot_col, figsize=(12, 12))
 
+    fig_gau, axes_gau = plt.subplots(subplot_row, subplot_col, figsize=(12, 12))
 
     # get the parameters for all tester
     for i in tqdm(range(16)):
@@ -138,7 +139,7 @@ if __name__ == '__main__':
         mean_p_hit = np.mean(p_hit_collects,axis=0)
 
         # plot_ROC(mean_p_fa, mean_p_hit, title_info='tester id:{}  number of experiment:{}'.format(tester_number,N_experiment),error_p_fa=error_p_fa,error_p_hit=error_p_hit)
-        axes[axes_idx_row,axes_idx_col].errorbar(p_fa, p_hit, xerr= error_p_fa,yerr=error_p_hit,
+        axes[axes_idx_row,axes_idx_col].errorbar(mean_p_fa, mean_p_hit, xerr= error_p_fa,yerr=error_p_hit,
                      marker='o',markerfacecolor='None', color='k', markersize=1,
                      ecolor = 'red',elinewidth = 1)
         xs = np.linspace(0, 1, 100)
@@ -149,5 +150,36 @@ if __name__ == '__main__':
         axes[axes_idx_row, axes_idx_col].set_xlim(0, 1)
         axes[axes_idx_row, axes_idx_col].set_ylim(0, 1)
 
+
+        # roc in gaussian corrdinate
+        inv_p_hit_collects = norm.ppf(p_hit_collects)
+        inv_p_fa_collects = norm.ppf(p_fa_collects)
+
+        error_inv_p_fa = np.nanstd(inv_p_fa_collects, axis=0)  # /np.sqrt(N_experiment)
+        error_inv_p_hit = np.nanstd(inv_p_hit_collects, axis=0)  # /np.sqrt(N_experiment)
+
+        mean_inv_p_fa = np.nanmean(inv_p_fa_collects, axis=0)
+        mean_inv_p_hit = np.nanmean(inv_p_hit_collects, axis=0)
+
+        axes_gau[axes_idx_row, axes_idx_col].errorbar(mean_inv_p_fa, mean_inv_p_hit,
+                     xerr= error_inv_p_fa,yerr=error_inv_p_hit,
+                     ecolor = 'black',elinewidth = 1,linestyle="None")
+        axes_gau[axes_idx_row,axes_idx_col].scatter(mean_inv_p_fa, mean_inv_p_hit,marker='o', color='royalblue', s=20,alpha=0.5)
+        xs = np.linspace(-2, 2, 100)
+        xs_ = np.zeros(100)
+        axes_gau[axes_idx_row, axes_idx_col].plot(xs_, xs, color='grey', alpha=0.5)
+        axes_gau[axes_idx_row, axes_idx_col].plot(xs, xs_, color='grey', alpha=0.5)
+        axes_gau[axes_idx_row, axes_idx_col].set_title('tester id:{}'.format(tester_number))
+        axes_gau[axes_idx_row, axes_idx_col].set_xlabel('$Z_{FA}$')
+        axes_gau[axes_idx_row, axes_idx_col].set_ylabel('$Z_{HIT}$')
+        axes_gau[axes_idx_row, axes_idx_col].set_xlim(-2, 2)
+        axes_gau[axes_idx_row, axes_idx_col].set_ylim(-2, 2)
+
+
+
     fig.suptitle('ROC curve\n(number of experiment:{}, error bar:{})'.format(N_experiment,'standard deviation'),fontsize=18)
     fig.show()
+
+    fig_gau.suptitle('ROC in Gaussian Coordinates\n(number of experiment:{}, error bar:{})'.format(N_experiment, 'standard deviation'),
+                 fontsize=18)
+    fig_gau.show()

@@ -93,15 +93,29 @@ The plot below shows the distribution of $diff$ for both BCI and JPM samples for
 
 Another way of analyzing the refitting result is simply checking the ROC curve. From signal detection theory, the ROC curve is used for measure the sensitivity between two signals (or one signal and one noise). Just as the plot shows below, when curve is more close to the diagonal, two signals are more similar to each other. 
 
-![roc_illustration](./img/roc_illustration.jpg)
+![roc_illustration](./img/roc_illustration.JPG)
 
 The plot below shows the ROC curve for 16 tester.
 
 ![](./results/plots/roc_curve.png)
 
+We could observe from this plot that for most of the tester, the 2 fitted model are quite similar with each other, just like the plot we show before {**plots needed(the fitted distribution for every tester)**}. What worth mentioning is the tester no.5,6,7 and 12 are quite different from the others. They show a 'peak' with low $P_{FA}$ area while being close to the diagonal with large $P_{FA}$ area.
+
+ROC curve in Gaussian coordinates could not only help us to measure the sensitivity (d') at one glimpse (with even covariance, d' is the intercept of the fitted line), but also reveal whether the signals are both gaussian distributed. If both signals are gaussian distributed, then the nodes should be linear distributed. 
+
+Below the plot shows the ROC in Gaussian coordinates for 16 testers. It could be seen that tester No.2,3,5,6,7,10,12 are clearly having non-Gaussian distribution for BCI model. 
 
 
 
+![](./results/plots/roc_curve_gau.png) 
+
+##### 5.2.4 *p*-value and significance test
+
+The last method we used for analyzing the difference between 2 fitted model is significance test. The idea is  to exam how confident we are with the following null hypothesis: for JPM samples, JPM model works better than BCI model (also the other way around: for BCI samples, BCI model works better than JPM model). 
+
+We are going to generate one set of samples for each tester from both fitted distributions, then using both model to fit the stimulated data again. After this the $s_M$ for both model would be calculated, then we will use $diff$ for testing is it significantly larger/less than 0. 
+
+The above experiment would be done for 100 times. By collecting all the p-value from 100 experiments, the hypothesis could be well tested.
 
 
 
