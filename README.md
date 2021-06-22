@@ -89,9 +89,19 @@ The plot below shows the distribution of $diff$ for both BCI and JPM samples for
 
 ![diff_index0_12](./results/plots/diff_index0_12.png)
 
-##### 5.2.3 ROC curve analyze
+##### 5.2.3 ROC curve analysis
 
-Another way of analyzing the refitting result is simply checking the ROC curve. From signal detection theory, the ROC curve is used for detect the sensitivity between two signals (or one signal and one noise)
+Another way of analyzing the refitting result is simply checking the ROC curve. From signal detection theory, the ROC curve is used for measure the sensitivity between two signals (or one signal and one noise). Just as the plot shows below, when curve is more close to the diagonal, two signals are more similar to each other. 
+
+![roc_illustration](./img/roc_illustration.jpg)
+
+The plot below shows the ROC curve for 16 tester.
+
+![](./results/plots/roc_curve.png)
+
+
+
+
 
 
 

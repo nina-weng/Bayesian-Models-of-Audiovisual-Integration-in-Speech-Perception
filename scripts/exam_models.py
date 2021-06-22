@@ -420,6 +420,9 @@ def fitted_curve_visulization(fig_single_stim,axs_single_stim,fig_double_stim,ax
             axs_double_stim[i].vlines(boundaries_bci[j], ymin=ymin, ymax=ymax, color='limegreen', alpha=0.5,
                                       linewidth=2, linestyle='dashed')
 
+        if i == 0:
+            axs_double_stim[i].legend()
+
     fig_double_stim.show()
     return None
 

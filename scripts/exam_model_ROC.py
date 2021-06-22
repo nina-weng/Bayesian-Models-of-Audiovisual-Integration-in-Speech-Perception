@@ -1,11 +1,20 @@
 from exam_models import *
 from scipy.stats import norm
 
-def plot_ROC(p_fa,p_hit,title_info):
+
+
+
+def plot_ROC(p_fa,p_hit,title_info,error_p_fa=None,error_p_hit=None):
     plt.figure(figsize = (6,6))
-    p_fa = np.concatenate([[0],p_fa])
-    p_hit = np.concatenate([[0],p_hit])
-    plt.plot(p_fa,p_hit,marker = 'o',markerfacecolor= 'red',color='k',markersize=10)
+    # p_fa = np.concatenate([[0],p_fa])
+    # p_hit = np.concatenate([[0],p_hit])
+    if error_p_fa.all()!=None and error_p_hit.all()!=None:
+        print('error bar plot')
+        plt.errorbar(p_fa, p_hit, xerr= error_p_fa,yerr=error_p_hit,
+                     marker='o',markerfacecolor='None', color='k', markersize=1,
+                     ecolor = 'red')
+    else:
+        plt.plot(p_fa,p_hit,marker = 'o',markerfacecolor= 'red',color='k',markersize=10)
     xs=np.linspace(0,1,100)
     plt.plot(xs,xs,color='grey',alpha=0.5)
     plt.title('ROC - {}'.format(title_info))
@@ -46,7 +55,7 @@ if __name__ == '__main__':
     A_snr = 'low'
     snr = 'asynch'  # 'synch'
     sample_size_unit = 25
-    N_experiment = 1
+    N_experiment = 100
 
     if V_snr == 'high' and A_snr == 'high':
         fusion_snr_type = 0
@@ -71,24 +80,74 @@ if __name__ == '__main__':
 
     params_jpm, params_bci, exp_data = load_data(pkl_path, param_jpm_path, param_bci_path)
 
-    # get the parameters for chosen tester
-    params_jpm_dict, params_bci_dict = load_paramters(params_jpm, params_bci, tester_number)
-
-    for i_exp in range(N_experiment):
-        # generating samples (1 trail)
-        data_sample_jpm = generate_samples(params_jpm_dict,sample_size_unit,A_snr=A_snr, V_snr=V_snr,snr=snr,\
-                                       fusion_snr_type=fusion_snr_type,model='JPM')
-        data_sample_bci = generate_samples(params_bci_dict,sample_size_unit,A_snr=A_snr, V_snr=V_snr,snr=snr,\
-                                       fusion_snr_type=fusion_snr_type,model='BCI')
-
-        avf_prop_jpm = data_sample_jpm['AVFus']['props']
-        avf_prop_bci = data_sample_bci['AVFus']['props']
-
-        avf_p_fa = np.cumsum(avf_prop_jpm[::-1])
-        avf_p_hit = np.cumsum(avf_prop_bci[::-1])
-
-        plot_ROC(avf_p_fa,avf_p_hit,title_info='tester id :{}'.format(tester_number))
-        plot_ROC_gaussian_coordinates(avf_p_fa,avf_p_hit,title_info='tester id :{}'.format(tester_number))
+    subplot_row = 4
+    subplot_col = 4
+    fig,axes = plt.subplots(subplot_row,subplot_col, figsize=(12, 12))
 
 
+    # get the parameters for all tester
+    for i in tqdm(range(16)):
+        # get axes index
+        axes_idx_row = int(math.floor(i/subplot_col))
+        axes_idx_col = i%subplot_col
 
+        # print(axes_idx_row,axes_idx_col)
+
+
+        # get tester id
+        tester_number = i
+
+        # get parameters for chosen tester id
+        params_jpm_dict, params_bci_dict = load_paramters(params_jpm, params_bci, tester_number)
+
+        p_fa_collects = []
+        p_hit_collects = []
+
+        for i_exp in range(N_experiment):
+            # generating samples (1 trail)
+            data_sample_jpm = generate_samples(params_jpm_dict,sample_size_unit,A_snr=A_snr, V_snr=V_snr,snr=snr,\
+                                           fusion_snr_type=fusion_snr_type,model='JPM')
+            data_sample_bci = generate_samples(params_bci_dict,sample_size_unit,A_snr=A_snr, V_snr=V_snr,snr=snr,\
+                                           fusion_snr_type=fusion_snr_type,model='BCI')
+
+            avf_prop_jpm = data_sample_jpm['AVFus']['props']
+            avf_prop_bci = data_sample_bci['AVFus']['props']
+
+            avf_p_fa = np.cumsum(avf_prop_jpm[::-1])
+            avf_p_hit = np.cumsum(avf_prop_bci[::-1])
+
+            p_fa = np.concatenate([[0], avf_p_fa])
+            p_hit = np.concatenate([[0], avf_p_hit])
+
+            p_fa_collects.append(p_fa)
+            p_hit_collects.append(p_hit)
+
+            # plot_ROC(avf_p_fa,avf_p_hit,title_info='tester id :{}'.format(tester_number))
+            # plot_ROC_gaussian_coordinates(avf_p_fa,avf_p_hit,title_info='tester id :{}'.format(tester_number))
+
+
+        # convert to numpy
+        p_hit_collects = np.array(p_hit_collects)
+        p_fa_collects = np.array(p_fa_collects)
+
+        # get error bar
+        error_p_fa = np.std(p_fa_collects,axis=0) #/np.sqrt(N_experiment)
+        error_p_hit = np.std(p_hit_collects, axis=0) #/np.sqrt(N_experiment)
+
+        mean_p_fa = np.mean(p_fa_collects,axis=0)
+        mean_p_hit = np.mean(p_hit_collects,axis=0)
+
+        # plot_ROC(mean_p_fa, mean_p_hit, title_info='tester id:{}  number of experiment:{}'.format(tester_number,N_experiment),error_p_fa=error_p_fa,error_p_hit=error_p_hit)
+        axes[axes_idx_row,axes_idx_col].errorbar(p_fa, p_hit, xerr= error_p_fa,yerr=error_p_hit,
+                     marker='o',markerfacecolor='None', color='k', markersize=1,
+                     ecolor = 'red',elinewidth = 1)
+        xs = np.linspace(0, 1, 100)
+        axes[axes_idx_row, axes_idx_col].plot(xs, xs, color='grey', alpha=0.5)
+        axes[axes_idx_row, axes_idx_col].set_title('tester id:{}'.format(tester_number))
+        axes[axes_idx_row, axes_idx_col].set_xlabel('$P_{FA}$')
+        axes[axes_idx_row, axes_idx_col].set_ylabel('$P_{HIT}$')
+        axes[axes_idx_row, axes_idx_col].set_xlim(0, 1)
+        axes[axes_idx_row, axes_idx_col].set_ylim(0, 1)
+
+    fig.suptitle('ROC curve\n(number of experiment:{}, error bar:{})'.format(N_experiment,'standard deviation'),fontsize=18)
+    fig.show()
