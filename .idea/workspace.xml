@@ -2,35 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="779c57b2-3a3e-4c32-88ed-ab5b8cf013f8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/0_bci_sample_100_20210617003710.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/0_bci_sample_100_20210617003710.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/0_jpm_sample_100_20210617003730.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/0_jpm_sample_100_20210617003730.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/12_bci_sample_100_20210615123555.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/12_bci_sample_100_20210615123555.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/12_jpm_sample_100_20210615123521.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/12_jpm_sample_100_20210615123521.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/1_bci_sample_100_20210617003758.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/1_bci_sample_100_20210617003758.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/1_jpm_sample_100_20210617003745.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/1_jpm_sample_100_20210617003745.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/2_bci_sample_100_20210617004201.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/2_bci_sample_100_20210617004201.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/2_jpm_sample_100_20210617004250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/2_jpm_sample_100_20210617004250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/3_bci_sample_100_20210617004213.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/3_bci_sample_100_20210617004213.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/3_jpm_sample_100_20210617004303.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/3_jpm_sample_100_20210617004303.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/4_bci_sample_100_20210617004226.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/4_bci_sample_100_20210617004226.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/4_jpm_sample_100_20210617004319.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/4_jpm_sample_100_20210617004319.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/5_bci_sample_100_20210615165538.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/5_bci_sample_100_20210615165538.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/5_jpm_sample_100_20210615165600.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/5_jpm_sample_100_20210615165600.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/6_bci_sample_100_20210616161601.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/6_bci_sample_100_20210616161601.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/6_jpm_sample_100_20210616161656.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/6_jpm_sample_100_20210616161656.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/7_bci_sample_100_20210616161729.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/7_bci_sample_100_20210616161729.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/7_jpm_sample_100_20210616161713.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/7_jpm_sample_100_20210616161713.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/8_bci_sample_100_20210617004451.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/8_bci_sample_100_20210617004451.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/8_jpm_sample_100_20210617004438.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/fitted_sampling/8_jpm_sample_100_20210617004438.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/fitted_vis_sample1.png" beforeDir="false" afterPath="$PROJECT_DIR$/results/plots/fitted_vis_sample1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/fitted_vis_sample2.png" beforeDir="false" afterPath="$PROJECT_DIR$/results/plots/fitted_vis_sample2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/testerid_12_fitted_score_diff.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/vis_sample1.png" beforeDir="false" afterPath="$PROJECT_DIR$/results/plots/vis_sample1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/vis_sample2.png" beforeDir="false" afterPath="$PROJECT_DIR$/results/plots/vis_sample2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/exam_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/exam_models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/sample_fitted_result_analyse.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/sample_fitted_result_analyse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/12_bci_sample_1_20210622135112.txt" beforeDir="false" afterPath="$PROJECT_DIR$/results/12_bci_sample_1_20210622135112.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -68,8 +40,8 @@
       <file leaf-file-name="exam_models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/exam_models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1143">
-              <caret line="486" column="52" selection-start-line="486" selection-start-column="52" selection-end-line="486" selection-end-column="52" />
+            <state relative-caret-position="144">
+              <caret line="215" selection-start-line="215" selection-end-line="215" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#15625#20393#0" />
@@ -352,13 +324,13 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32952926" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3195435" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3195435" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32952926" />
       <window_info anchor="right" id="Remote Host" order="3" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19705094" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.22654155" />
+      <window_info active="true" anchor="right" id="SciView" order="3" visible="true" weight="0.41286862" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.489301" />
@@ -739,8 +711,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/exam_models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1143">
-          <caret line="486" column="52" selection-start-line="486" selection-start-column="52" selection-end-line="486" selection-end-column="52" />
+        <state relative-caret-position="144">
+          <caret line="215" selection-start-line="215" selection-end-line="215" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <element signature="e#15625#20393#0" />
