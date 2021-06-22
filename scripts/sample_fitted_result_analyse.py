@@ -56,9 +56,11 @@ def load_result_data_v2(txt_path):
 
 
 
-bci_sample_fitted_result_path = '../results/12_bci_sample_100_20210615123555.txt'
-jpm_sample_fitted_result_path = '../results/12_jpm_sample_100_20210615123521.txt'
+bci_sample_fitted_result_path = '../results/fitted_sampling/12_bci_sample_100_20210615123555.txt'
+jpm_sample_fitted_result_path = '../results/fitted_sampling/12_jpm_sample_100_20210615123521.txt'
 
+tester_index = int(bci_sample_fitted_result_path.split('/')[-1].split('_')[0])
+print('test_id:{}'.format(tester_index))
 
 jpm_scores_bcisample,bci_scores_bcisample,inf_count_bci = load_result_data_v2(bci_sample_fitted_result_path)
 jpm_scores_jpmsample,bci_scores_jpmsample,inf_count_jpm = load_result_data_v2(jpm_sample_fitted_result_path)
@@ -88,12 +90,14 @@ diff_score_jpm = np.array(jpm_scores_jpmsample[:,index])-np.array(bci_scores_jpm
 
 plt.hist(percentage_diff_score_bci,bins=20,color='limegreen',alpha=0.5,label='BCI sample' )
 plt.hist(percentage_diff_score_jpm,bins=20,color='mediumorchid',alpha=0.5,label='JPM sample' )
+plt.vlines(0.0,0,20,color='grey',linestyles='dashed',alpha=0.9)
 plt.xlim(-0.5,0.5)
 plt.ylim(0,20)
 plt.title('The difference between JPM score and BCI score for both samples\n($diff = \\frac{s_{JPM}- s_{BCI}}{s_{BCI}}$, score ($s$) is neg-log-likelihood)')
-plt.text(x=0,y=-1.5,s='PARAMs: {tester_number:12, sample_size_unit:25, N_experiment:100,\nV_snr:high, A_snr:low, snr:asynch}',
+plt.text(x=0,y=-2,s='PARAMs: {tester_number:12, sample_size_unit:25, N_experiment:100,\nV_snr:high, A_snr:low, snr:asynch}',
          ha='center',va='center')
 plt.legend()
+plt.savefig('../results/plots/diff_index{}_{}.png'.format(index,tester_index))
 plt.show()
 
 # confusion matrix

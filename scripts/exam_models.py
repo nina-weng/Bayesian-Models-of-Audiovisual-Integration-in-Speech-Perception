@@ -218,7 +218,7 @@ def fit_model(tester_index,exp_data, N_trails,model = 'JPM', implementation='ful
     return avfus_neg_log, whole_neg_log, total_neg_log,params_stored[min_index]
 
 
-def sample_visualization(params_jpm_dict,params_bci_dict,sample_data, sample_data_type):
+def sample_visualization(params_jpm_dict,params_bci_dict,sample_data, sample_data_type,tester_number):
     xs = np.linspace(-PLOT_RANGE, PLOT_RANGE, 100)
 
     # visualize the single stimuli
@@ -265,8 +265,7 @@ def sample_visualization(params_jpm_dict,params_bci_dict,sample_data, sample_dat
         if i==0:
             axs_single_stim[i].legend()
 
-
-
+    fig_single_stim.suptitle('tester id:{}'.format(tester_number))
     fig_single_stim.show()
 
     # get the mu & sigma for both models
@@ -326,6 +325,7 @@ def sample_visualization(params_jpm_dict,params_bci_dict,sample_data, sample_dat
         if i == 0:
             axs_double_stim[i].legend()
 
+    fig_single_stim.suptitle('tester id:{}'.format(tester_number))
     fig_double_stim.show()
 
     return fig_single_stim,axs_single_stim,fig_double_stim,axs_double_stim
@@ -428,7 +428,7 @@ def fitted_curve_visulization(fig_single_stim,axs_single_stim,fig_double_stim,ax
 if __name__ == '__main__':
 
     # define the parameters
-    tester_number = 6
+    tester_number = 12
     V_snr = 'high'
     A_snr = 'low'
     snr = 'asynch'  # 'synch'
@@ -477,10 +477,10 @@ if __name__ == '__main__':
         print(data_sample)
 
         # visualize the samples in single/double stimuli
-        fig_single_stim,axs_single_stim,fig_double_stim,axs_double_stim = sample_visualization(params_jpm_dict,params_bci_dict,data_sample,sample_data_type = 'BCI')
+        fig_single_stim,axs_single_stim,fig_double_stim,axs_double_stim = sample_visualization(params_jpm_dict,params_bci_dict,data_sample,sample_data_type = 'BCI',tester_number=tester_number)
 
         # fit the sample with JPM and BCI model
-        N_trails = 2
+        N_trails = 5
         jpm_avfus_neg_log, jpm_whole_neg_log, jpm_total_neg_log,params_jpm_newfitted = fit_model(tester_number,data_sample, N_trails,model = 'JPM', implementation='full',preprocess=True)
         bci_avfus_neg_log, bci_whole_neg_log, bci_total_neg_log,params_bci_newfitted = fit_model(tester_number,data_sample, N_trails,model = 'BCI', implementation='full',preprocess=True)
         print('jpm_neg_log_sum:{:.4f}'.format(jpm_total_neg_log))

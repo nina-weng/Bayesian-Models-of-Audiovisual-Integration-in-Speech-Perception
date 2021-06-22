@@ -37,12 +37,61 @@ Steps for this Phase:
 
 1. We could observe from the visualization that when *snr* equals *"VHigh + ALow"* and with *asynchrony* condition. And for tester No.5,6,7,12, the differences of model distribution are much more obvious. Therefore, we would restrict the condition to asychnocy with VhighAlow. 
 2.  Use the best parameters from the fitting process, generate 25\*3 samples for single stimuli (only take the high quality for visual stimuli and low quality for audio stimuli), and 25\*5\*2 samples for fusion stimuli for only Vhigh-Alow snr. The sample size here are set to match the original total size of the responses. 
-3. Assign the samples into 9 categories, the boundaries are set by evenly dividing from $\mu_{ag}$ to $\mu__{ab}$. 
+3. Assign the samples into 9 categories, the boundaries are set by evenly dividing from $\mu_{ag}$ to $\mu_{ab}$. 
 4. Store the counts and probabilities as the similar format as the original data responses.  
 
 ### Phase 5: Fit the stimulated sample to JPM and BCI respectively and compare the result 
 
+#### 5.1 Model re-fitting
 
+##### 5.1.1 re-fitting procedure
+
+##### 5.1.2 re-fitting results
+
+
+
+Fitted models with tester No.12; samples are generated from BCI model.
+
+![](./results/plots/fitted_vis_12_bci_1.png)
+
+![](./results/plots/fitted_vis_12_bci_2.png)
+
+
+
+#### 5.2 Result Analysis
+
+##### 5.2.1 The definition of $s_M$  (the score of a model)
+
+The score for evaluating the model is the value of negative log likelihood. Here we compute two types of negative log likelihood, 1) only for fusion condition, 2) the sum of all conditions. 
+$$
+s_{M_{fusion}} = -log\mathcal{L_{fusion}} \\
+s_M = -\sum_{c\in{C}}log\mathcal{L_c}
+$$
+where $c$ represents the conditions, $C$ represents the collection of all conditions. 
+
+
+
+According to the definition of likelihood, the larger the likelihood is, the better the model is. In our case, with the negative log likelihood, the smaller the $s_M$ is, the better the model is. 
+
+
+
+##### 5.2.2 Comparison over the difference of scores from 2 models
+
+The first method we use to comparison the results over 2 models is computing the difference between the score from 2 models. 
+
+We define the new comparison factor $diff$ as below:
+$$
+diff = \frac{s_{JPM}-s_{BCI}}{s_{BCI}}
+$$
+Considering there's two kinds of $s_M$ and they have different numerical range, we divide the difference by the score of BCI model to normalize all value into the range of $[-1,1]$.  Based on the definition of $s_M$, we'll know that when $diff<0$, meaning JPM fits the sample better; otherwise, BCI model fits the sample better. 
+
+The plot below shows the distribution of $diff$ for both BCI and JPM samples for tester No.12 with the score type of $s_{M_{fusion}}$. As clearly showed in the plot, for most of JPM samples, JPM fits the sample better; and the same story happen to BCI samples as well. Still, there's a small area of overlapping showing in the plots, indicating that for some samples generated from model A, it turned out that model B got the better fitting result. We'll analyze the certainty of one model 'wins' the other in the following section 5.2.4. 
+
+![diff_index0_12](./results/plots/diff_index0_12.png)
+
+##### 5.2.3 ROC curve analyze
+
+Another way of analyzing the refitting result is simply checking the ROC curve. From signal detection theory, the ROC curve is used for detect the sensitivity between two signals (or one signal and one noise)
 
 
 
@@ -78,4 +127,6 @@ Steps for this Phase:
 
 * write the report Phase 1& 2, overleaf}
 
-  
+   
+
+### Statistics 
