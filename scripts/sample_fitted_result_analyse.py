@@ -37,7 +37,7 @@ def load_result_data_v2(txt_path):
             bci_s = np.array([float(s) for s in contents[1].split(':')[1].split(',')])
             # print(jpm_s,bci_s)
 
-            if np.isinf(jpm_s).any() or np.isinf(bci_s).any():
+            if np.isinf(jpm_s).all() or np.isinf(bci_s).all():
                 inf_count += 1
                 continue
 
@@ -54,57 +54,57 @@ def load_result_data_v2(txt_path):
 #12_bci_sample_100_20210615123555
 #12_jpm_sample_100_20210615123521
 
+if __name__ == '__main__':
+
+    bci_sample_fitted_result_path = '../results/fitted_sampling/12_bci_sample_100_20210615123555.txt'
+    jpm_sample_fitted_result_path = '../results/fitted_sampling/12_jpm_sample_100_20210615123521.txt'
+
+    tester_index = int(bci_sample_fitted_result_path.split('/')[-1].split('_')[0])
+    print('test_id:{}'.format(tester_index))
+
+    jpm_scores_bcisample,bci_scores_bcisample,inf_count_bci = load_result_data_v2(bci_sample_fitted_result_path)
+    jpm_scores_jpmsample,bci_scores_jpmsample,inf_count_jpm = load_result_data_v2(jpm_sample_fitted_result_path)
+
+    print(len(jpm_scores_bcisample),len(bci_scores_bcisample),inf_count_bci)
+    print(len(jpm_scores_jpmsample),len(bci_scores_jpmsample),inf_count_jpm)
+    # fig,axes = plt.subplots(2, 1, figsize=(8, 8))
+    # bins = 20
+    # axes[0].hist(jpm_scores_bcisample,bins=bins,color='mediumorchid',alpha=0.5,label='jpm score')
+    # axes[0].hist(bci_scores_bcisample,bins=bins,color='limegreen',alpha=0.5,label='bci score')
+    # axes[0].legend()
+    # axes[0].set_title('Fitted BCI sample with both models (number of experiment:{}, include {} inf result)'.format(len(jpm_scores_bcisample)+inf_count_bci,inf_count_bci))
+    # axes[1].hist(jpm_scores_jpmsample,bins=bins,color='mediumorchid',alpha=0.5,label='jpm score')
+    # axes[1].hist(bci_scores_jpmsample,bins=bins,color='limegreen',alpha=0.5,label='bci score')
+    # axes[1].legend()
+    # axes[1].set_title('Fitted JPM sample with both models (number of experiment:{}, include {} inf result)'.format(len(bci_scores_jpmsample)+inf_count_jpm,inf_count_jpm))
+    # fig.show()
+
+    plt.figure(figsize=(6,6))
+    index = 0
+    percentage_diff_score_bci = (np.array(jpm_scores_bcisample[:,index])-np.array(bci_scores_bcisample[:,index]))/np.array(bci_scores_bcisample[:,index])
+    percentage_diff_score_jpm = (np.array(jpm_scores_jpmsample[:,index])-np.array(bci_scores_jpmsample[:,index]))/np.array(bci_scores_jpmsample[:,index])
+
+    diff_score_bci = np.array(jpm_scores_bcisample[:,index])-np.array(bci_scores_bcisample[:,index])
+    diff_score_jpm = np.array(jpm_scores_jpmsample[:,index])-np.array(bci_scores_jpmsample[:,index])
 
 
-bci_sample_fitted_result_path = '../results/fitted_sampling/12_bci_sample_100_20210615123555.txt'
-jpm_sample_fitted_result_path = '../results/fitted_sampling/12_jpm_sample_100_20210615123521.txt'
+    plt.hist(percentage_diff_score_bci,bins=20,color='limegreen',alpha=0.5,label='BCI sample' )
+    plt.hist(percentage_diff_score_jpm,bins=20,color='mediumorchid',alpha=0.5,label='JPM sample' )
+    plt.vlines(0.0,0,20,color='grey',linestyles='dashed',alpha=0.9)
+    plt.xlim(-0.5,0.5)
+    plt.ylim(0,20)
+    plt.title('The difference between JPM score and BCI score for both samples\n($diff = \\frac{s_{JPM}- s_{BCI}}{s_{BCI}}$, score ($s$) is neg-log-likelihood)')
+    plt.text(x=0,y=-2,s='PARAMs: {tester_number:12, sample_size_unit:25, N_experiment:100,\nV_snr:high, A_snr:low, snr:asynch}',
+             ha='center',va='center')
+    plt.legend()
+    plt.savefig('../results/plots/diff_index{}_{}.png'.format(index,tester_index))
+    plt.show()
 
-tester_index = int(bci_sample_fitted_result_path.split('/')[-1].split('_')[0])
-print('test_id:{}'.format(tester_index))
-
-jpm_scores_bcisample,bci_scores_bcisample,inf_count_bci = load_result_data_v2(bci_sample_fitted_result_path)
-jpm_scores_jpmsample,bci_scores_jpmsample,inf_count_jpm = load_result_data_v2(jpm_sample_fitted_result_path)
-
-print(len(jpm_scores_bcisample),len(bci_scores_bcisample),inf_count_bci)
-print(len(jpm_scores_jpmsample),len(bci_scores_jpmsample),inf_count_jpm)
-# fig,axes = plt.subplots(2, 1, figsize=(8, 8))
-# bins = 20
-# axes[0].hist(jpm_scores_bcisample,bins=bins,color='mediumorchid',alpha=0.5,label='jpm score')
-# axes[0].hist(bci_scores_bcisample,bins=bins,color='limegreen',alpha=0.5,label='bci score')
-# axes[0].legend()
-# axes[0].set_title('Fitted BCI sample with both models (number of experiment:{}, include {} inf result)'.format(len(jpm_scores_bcisample)+inf_count_bci,inf_count_bci))
-# axes[1].hist(jpm_scores_jpmsample,bins=bins,color='mediumorchid',alpha=0.5,label='jpm score')
-# axes[1].hist(bci_scores_jpmsample,bins=bins,color='limegreen',alpha=0.5,label='bci score')
-# axes[1].legend()
-# axes[1].set_title('Fitted JPM sample with both models (number of experiment:{}, include {} inf result)'.format(len(bci_scores_jpmsample)+inf_count_jpm,inf_count_jpm))
-# fig.show()
-
-plt.figure(figsize=(6,6))
-index = 0
-percentage_diff_score_bci = (np.array(jpm_scores_bcisample[:,index])-np.array(bci_scores_bcisample[:,index]))/np.array(bci_scores_bcisample[:,index])
-percentage_diff_score_jpm = (np.array(jpm_scores_jpmsample[:,index])-np.array(bci_scores_jpmsample[:,index]))/np.array(bci_scores_jpmsample[:,index])
-
-diff_score_bci = np.array(jpm_scores_bcisample[:,index])-np.array(bci_scores_bcisample[:,index])
-diff_score_jpm = np.array(jpm_scores_jpmsample[:,index])-np.array(bci_scores_jpmsample[:,index])
-
-
-plt.hist(percentage_diff_score_bci,bins=20,color='limegreen',alpha=0.5,label='BCI sample' )
-plt.hist(percentage_diff_score_jpm,bins=20,color='mediumorchid',alpha=0.5,label='JPM sample' )
-plt.vlines(0.0,0,20,color='grey',linestyles='dashed',alpha=0.9)
-plt.xlim(-0.5,0.5)
-plt.ylim(0,20)
-plt.title('The difference between JPM score and BCI score for both samples\n($diff = \\frac{s_{JPM}- s_{BCI}}{s_{BCI}}$, score ($s$) is neg-log-likelihood)')
-plt.text(x=0,y=-2,s='PARAMs: {tester_number:12, sample_size_unit:25, N_experiment:100,\nV_snr:high, A_snr:low, snr:asynch}',
-         ha='center',va='center')
-plt.legend()
-plt.savefig('../results/plots/diff_index{}_{}.png'.format(index,tester_index))
-plt.show()
-
-# confusion matrix
-print('\t\tFitted JPM is better\tFitted BCI is better')
-jpm_better = np.sum(jpm_scores_jpmsample[:,index]<bci_scores_jpmsample[:,index])
-bci_better = len(jpm_scores_jpmsample) - jpm_better
-print("JPM sample\t{}\t{}".format(jpm_better,bci_better))
-jpm_better = np.sum(jpm_scores_bcisample[:,index]<bci_scores_bcisample[:,index])
-bci_better = len(jpm_scores_bcisample) - jpm_better
-print("BCI sample\t{}\t{}".format(jpm_better,bci_better))
+    # confusion matrix
+    print('\t\tFitted JPM is better\tFitted BCI is better')
+    jpm_better = np.sum(jpm_scores_jpmsample[:,index]<bci_scores_jpmsample[:,index])
+    bci_better = len(jpm_scores_jpmsample) - jpm_better
+    print("JPM sample\t{}\t{}".format(jpm_better,bci_better))
+    jpm_better = np.sum(jpm_scores_bcisample[:,index]<bci_scores_bcisample[:,index])
+    bci_better = len(jpm_scores_bcisample) - jpm_better
+    print("BCI sample\t{}\t{}".format(jpm_better,bci_better))

@@ -111,11 +111,50 @@ Below the plot shows the ROC in Gaussian coordinates for 16 testers. It could be
 
 ##### 5.2.4 *p*-value and significance test
 
-The last method we used for analyzing the difference between 2 fitted model is significance test. The idea is  to exam how confident we are with the following null hypothesis: for JPM samples, JPM model works better than BCI model (also the other way around: for BCI samples, BCI model works better than JPM model). 
+The last method we used for analyzing the difference between 2 fitted model is significance test. The idea is  to exam how confident we are with the statement about Model A 'wins' Model B. The null hypothesis are: 
+
+1. for JPM samples, JPM model works less better than BCI model 
+2. (also the other way around) for BCI samples, BCI model works less better than JPM model.
+
+Notice that the null hypothesis is the statement that we'd like to prove against. 
 
 We are going to generate one set of samples for each tester from both fitted distributions, then using both model to fit the stimulated data again. After this the $s_M$ for both model would be calculated, then we will use $diff$ for testing is it significantly larger/less than 0. 
 
 The above experiment would be done for 100 times. By collecting all the p-value from 100 experiments, the hypothesis could be well tested.
+
+> $H_{a_{0}}$: For samples generated from JPM, $s_{JPM} > s_{BCI}$ , which equals to $s_{JPM} - s_{BCI} > 0$
+>
+> $H_{b_0}$: For samples generated from BCI, $s_{JPM} < s_{BCI}$ , which equals to $s_{JPM} - s_{BCI}<0$
+
+Notice that both $H_0$ is one-tailed. 
+
+as for each experiment, sample_size < 30, so considering using t-test.
+
+
+
+* $s_M$, alpha = 0.01
+  * H_a_0, p-value less then 0.01:92
+  * H_b_0, p-value less then 0.01:100
+
+* $s_M$,alpha = 0.05
+  * H_a_0, p-value less then 0.05:95
+  * H_b_0, p-value less then 0.05:100
+
+* $s_{M_{fusion}}$,alpha=0.01
+  * H_a_0, p-value less then 0.01:0
+  * H_b_0, p-value less then 0.01:98
+
+* $s_{M_{fusion}}$,alpha=0.05
+  * H_a_0, p-value less then 0.05:12
+  * H_b_0, p-value less then 0.05:100
+
+* $s_{M_{fusion}}$,alpha=0.1
+  * H_a_0, p-value less then 0.05:31
+  * H_b_0, p-value less then 0.05:100
+
+
+
+
 
 
 
