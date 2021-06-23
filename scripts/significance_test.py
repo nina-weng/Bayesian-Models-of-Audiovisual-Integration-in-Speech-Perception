@@ -9,6 +9,21 @@ import os
 import numpy as np
 from sample_fitted_result_analyse import load_result_data_v2
 from scipy import stats
+import matplotlib.pyplot as plt
+
+
+def plot_distribution(data1,data2,bins,color1,color2,title):
+    plt.figure(figsize=(6,6))
+    plt.hist(data1,bins=bins,color=color1,alpha=0.5,label='JPM sample')
+    plt.hist(data2,bins=bins,color=color2,alpha=0.5,label='BCI sample')
+    plt.vlines(0,0,9,color='grey',linestyles='dashed')
+    plt.xlabel('diff(s_JPM-s_BCI)')
+    plt.ylabel('count')
+    plt.ylim(0,9)
+    plt.title(title)
+    plt.legend()
+    plt.show()
+
 
 
 if __name__ == '__main__':
@@ -20,7 +35,7 @@ if __name__ == '__main__':
     num_of_tester = 16
     N_experiment = 100
     h_boundaries = 0
-    alpha = 0.1
+    alpha = 0.01
 
     # s_index: type of score
     # 0: only fusion neg-log-likelihood; 1: sum of all conditions' neg-log-likelihood; 2: 1 + regularization term
@@ -39,12 +54,12 @@ if __name__ == '__main__':
         fpath = os.path.join(fitted_result_dir,fname)
         if sample_type == 'jpm':
             jpm_scores, bci_scores, inf_count = load_result_data_v2(fpath)
-            # print(data_jpm_sample[test_id,:,:].shape)
-            # print(np.concatenate(([jpm_scores[:,s_index]],[bci_scores[:,s_index]]),axis=0).shape)
-            data_jpm_sample[test_id,:] = jpm_scores[:,s_index]-bci_scores[:,s_index]
+            # data_jpm_sample[test_id, :] = jpm_scores[:, s_index] - bci_scores[:, s_index]
+            data_jpm_sample[test_id,:] = (jpm_scores[:,s_index]-bci_scores[:,s_index])/bci_scores[:,s_index]
         elif sample_type == 'bci':
             jpm_scores, bci_scores, inf_count = load_result_data_v2(fpath)
-            data_bci_sample[test_id,:] = jpm_scores[:,s_index]-bci_scores[:,s_index]
+            # data_bci_sample[test_id, :] = jpm_scores[:, s_index] - bci_scores[:, s_index]
+            data_bci_sample[test_id,:] = (jpm_scores[:,s_index]-bci_scores[:,s_index])/bci_scores[:,s_index]
 
     print('test')
     # calculate the p-value
@@ -62,6 +77,13 @@ if __name__ == '__main__':
         # print(np.mean(data_bci_sample[:, j]))
         # print('{}\t{}\t{}'.format(j, statistic, pvalue))
         p_vals_bci[j] = pvalue
+
+        if j <3:
+            # print(np.arange(-10,11,0.5))
+            plot_distribution(data1=data_jpm_sample[:,j],data2=data_bci_sample[:,j],bins=np.arange(-1,1,0.05),
+                              color1='violet',color2='seagreen',title='s_index:{} alpha:{}'.format(s_index,alpha))
+
+
 
     print('H_a_0, p-value less then {}:{}'.format(alpha,np.sum(p_vals_jpm<alpha)))
     print('H_b_0, p-value less then {}:{}'.format(alpha, np.sum(p_vals_bci < alpha)))

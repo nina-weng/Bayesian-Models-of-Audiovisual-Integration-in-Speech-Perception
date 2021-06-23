@@ -89,6 +89,20 @@ The plot below shows the distribution of $diff$ for both BCI and JPM samples for
 
 ![diff_index0_12](./results/plots/diff_index0_12.png)
 
+The following 2 plots shows the $diff$ results for all 16 testers, using two types of score ($s_M$, $s_{M_{fusion}}$). 
+
+Some key observations:
+
+1. $s_M$ separates the 2 parts of distributions better than $s_{M_{fusion}} , which could be observed from section **5.2.4** as well
+2. In general, for BCI samples,  BCI model fitting outperforms JPM fitting; for JPM samples, JPM model fitting outperformed BCI model fitting. What worth mentioning is that , the degree of outperforming is much more significant for BCI sampling, which might indicates the BCI model might be closer to the human audio-visual perception. 
+3. There are some testers (8,13,15), the $diff$ values are very similar for both models. What need to notice is that for these testers we use different x axis scale(1e-5). 
+
+![](./results/plots/diff_index1_all_rangead.png)
+
+
+
+![](./results/plots/diff_index0_all_rangead.png)
+
 ##### 5.2.3 ROC curve analysis
 
 Another way of analyzing the refitting result is simply checking the ROC curve. From signal detection theory, the ROC curve is used for measure the sensitivity between two signals (or one signal and one noise). Just as the plot shows below, when curve is more close to the diagonal, two signals are more similar to each other. 
