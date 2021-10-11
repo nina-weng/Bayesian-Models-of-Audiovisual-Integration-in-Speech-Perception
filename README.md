@@ -9,9 +9,6 @@ based on Alma's work: https://journals.plos.org/plosone/article/authors?id=10.13
 
 
 
-worklog: https://docs.google.com/spreadsheets/d/12fZfqtgxMTg6rTjENT-Q2yRCTC252KaY4XWu0jumSAk/edit#gid=0
-
-
 
 ## Target problem
 
